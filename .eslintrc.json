@@ -18,6 +18,8 @@
 	],
 	"rules": {
 		"react/react-in-jsx-scope": "off",
+		"no-unused-labels": "off",
+		"no-unused-vars": "off",
 		"indent": [
 			"error",
 			"tab"
