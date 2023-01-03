@@ -2,6 +2,8 @@ import { Grid, Hidden } from "@mui/material";
 
 import { Container, Content, ImageFluid, Title } from "./styles";
 
+import Input from "../../../components/Input";
+
 import login from "../../../assets/images/image-login.svg";
 
 const Form = () => {
@@ -16,6 +18,8 @@ const Form = () => {
 				</Hidden>
 				<Grid item md={6}>
 					<h2>Sign in</h2>
+					<Input id="email" label="Email" fullWidth />
+					<Input id="senha" label="Senha" name="teste" />
 				</Grid>
 			</Content>
 		</Container>
