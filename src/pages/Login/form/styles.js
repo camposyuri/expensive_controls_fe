@@ -2,7 +2,6 @@ import { Grid } from "@mui/material";
 import styled from "styled-components";
 
 export const Container = styled.div`
-	/* display: flex; */
 	width: 100%;
 `;
 
@@ -15,8 +14,10 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled(Grid)`
-	padding: 100px;
-	justify-content: center;
+	/* padding: 100px; */
+	/* justify-content: center; */
+
+	height: calc(100vh - 150px);
 
 	@media (max-width: 738px) {
 		padding: 41px 0px 0px 0px;
@@ -33,6 +34,6 @@ Container.displayName = "Container";
 
 Title.displayName = "Title";
 
-Content.displayName = "Content";
+// Content.displayName = "Content";
 
 ImageFluid.displayName = "ImageFluid";
