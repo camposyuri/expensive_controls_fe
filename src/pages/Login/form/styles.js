@@ -14,9 +14,6 @@ export const Title = styled.h1`
 `;
 
 export const Content = styled(Grid)`
-	/* padding: 100px; */
-	/* justify-content: center; */
-
 	height: calc(100vh - 150px);
 
 	@media (max-width: 738px) {
@@ -30,10 +27,30 @@ export const ImageFluid = styled.img`
 	height: auto;
 `;
 
+export const ContentRegister = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	span {
+		text-align: center;
+		margin: 25px;
+		color: ${({ theme }) => theme.colors.primary.lighter};
+		font-weight: 500;
+
+		strong {
+			color: ${({ theme }) => theme.colors.primary.main};
+			font-weight: 500;
+		}
+	}
+`;
+
 Container.displayName = "Container";
 
 Title.displayName = "Title";
 
-// Content.displayName = "Content";
+Content.displayName = "Content";
 
 ImageFluid.displayName = "ImageFluid";
+
+ContentRegister.displayName = "ContentRegister";

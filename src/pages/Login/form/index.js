@@ -1,6 +1,6 @@
 import { Grid, Hidden } from "@mui/material";
 
-import { Content, ImageFluid, Title } from "./styles";
+import { Content, ContentRegister, ImageFluid, Title } from "./styles";
 
 import Input from "../../../components/Input";
 
@@ -11,7 +11,12 @@ const Form = () => {
 	return (
 		<Grid container>
 			<Title>Controle de Gastos</Title>
-			<Content container direction="row" alignItems="center">
+			<Content
+				container
+				direction="row"
+				alignItems="center"
+				justifyContent="center"
+			>
 				<Hidden smDown>
 					<Grid item md={6}>
 						<ImageFluid src={login} alt="Login" />
@@ -28,6 +33,11 @@ const Form = () => {
 						</Grid>
 					</Grid>
 					<Button label="Login" fullWidth />
+					<ContentRegister>
+						<span>
+							<strong>Cadastre-se</strong> <br /> ou continue com
+						</span>
+					</ContentRegister>
 				</Grid>
 			</Content>
 		</Grid>

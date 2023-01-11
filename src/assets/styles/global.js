@@ -10,18 +10,24 @@ export default createGlobalStyle`
 	body {
 		background: ${({ theme }) => theme.colors.background};
 		font-size: 1rem;
-		color: ${({ theme }) => theme.colors.gray[900]}
+		color: ${({ theme }) => theme.colors.gray[900]};
 	}
 	.MuiButtonBase-root.MuiButton-root {
 		cursor: pointer;
-		background: ${({ theme }) => theme.colors.primary.main};
-		color: ${({ theme }) => theme.colors.primary.lighter};
+		background-color: ${({ theme }) => theme.colors.primary.main};
+		color: ${({ theme }) => theme.colors.primary.white};
 		border: none;
 		border-radius: 9px;
 		transition: all 0.4s ease-in-out;
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 500;
+		font-size: 1rem;
+		line-height: 24px;
 
 		&:hover {
-			background: ${({ theme }) => theme.colors.primary.light};
+			color: ${({ theme }) => theme.colors.primary.white};
+			background-color: ${({ theme }) => theme.colors.primary.light};
 		}
 	}
 `;

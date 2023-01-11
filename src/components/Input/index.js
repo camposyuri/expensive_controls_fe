@@ -1,7 +1,7 @@
-import { TextField } from "@mui/material";
+import { InputStyle } from "./styles";
 
 const Input = ({ id, label, ...props }) => {
-	return <TextField id={id} label={label} variant="outlined" {...props} />;
+	return <InputStyle id={id} label={label} variant="outlined" {...props} />;
 };
 
 export default Input;
