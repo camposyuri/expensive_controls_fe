@@ -11,8 +11,14 @@ import Button from "../../../components/Button";
 import utils from "./utils";
 
 const Form = () => {
-	const { showPassword, handleTogglePassword, handleMouseDownPassword } =
-		utils();
+	const {
+		values,
+		errors,
+		showPassword,
+		handleChangeValue,
+		handleTogglePassword,
+		handleMouseDownPassword,
+	} = utils();
 
 	return (
 		<Grid container>
@@ -32,15 +38,28 @@ const Form = () => {
 					<h2>Sign in</h2>
 					<Grid item md={12} marginTop={5}>
 						<Grid item marginBottom={3}>
-							<Input id="email" name="email" label="Email" fullWidth />
+							<Input
+								id="email"
+								name="email"
+								label="Email"
+								fullWidth
+								value={values.email}
+								required
+								error={errors.email}
+								onChange={handleChangeValue}
+							/>
 						</Grid>
 						<Grid item marginBottom={3}>
 							<Input
 								id="senha"
+								type={showPassword ? "text" : "password"}
 								name="password"
 								label="Senha"
 								fullWidth
-								type={showPassword ? "text" : "password"}
+								required
+								value={values.password}
+								error={errors.password}
+								onChange={handleChangeValue}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
