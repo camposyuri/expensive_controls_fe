@@ -16,6 +16,5 @@ export const InputStyle = styled(TextField)`
 		font-weight: 400;
 		font-size: 15px;
 		line-height: 22px;
-		padding-left: 14px;
 	}
 `;

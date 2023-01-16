@@ -4,10 +4,11 @@ import { Content, ContentRegister, ImageFluid, Title } from "./styles";
 
 import Input from "../../../components/Input";
 
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { Link } from "react-router-dom";
 import login from "../../../assets/images/image-login.svg";
 import Button from "../../../components/Button";
+
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
 import utils from "./utils";
 
 const Form = () => {
@@ -29,8 +30,11 @@ const Form = () => {
 					</Grid>
 				</Hidden>
 				<Grid item md={6}>
-					<h2>Sign in</h2>
+					<h2>Sign Up</h2>
 					<Grid item md={12} marginTop={5}>
+						<Grid item marginBottom={3}>
+							<Input id="name" name="name" label="Nome" fullWidth />
+						</Grid>
 						<Grid item marginBottom={3}>
 							<Input id="email" name="email" label="Email" fullWidth />
 						</Grid>
@@ -58,14 +62,9 @@ const Form = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Button label="Login" fullWidth />
+					<Button label="Cadastrar" fullWidth />
 					<ContentRegister>
-						<span>
-							<Link to="/signup">
-								<strong>Cadastre-se</strong>
-							</Link>
-							<br /> ou continue com
-						</span>
+						<span>ou continue com</span>
 					</ContentRegister>
 				</Grid>
 			</Content>
