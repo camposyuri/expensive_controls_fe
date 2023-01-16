@@ -43,8 +43,8 @@ const Form = () => {
 								name="email"
 								label="Email"
 								fullWidth
-								value={values.email}
 								required
+								value={values.email}
 								error={errors.email}
 								onChange={handleChangeValue}
 							/>
