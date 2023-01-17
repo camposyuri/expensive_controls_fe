@@ -5,7 +5,7 @@ const Input = ({ id, label, error = null, value, onChange, ...props }) => {
 		<InputStyle
 			id={id}
 			label={label}
-			value={value || ""}
+			value={value}
 			onChange={onChange}
 			variant="outlined"
 			{...props}

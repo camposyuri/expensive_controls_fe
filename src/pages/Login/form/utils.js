@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../hooks/useAuth";
 import useValid from "../../../hooks/useValid";
 import schema from "./schema";
 
@@ -9,6 +11,11 @@ const initialValues = {
 };
 
 const utils = () => {
+	// Hooks
+	const { signIn, isAuthenticated } = useAuth();
+
+	const navigate = useNavigate();
+
 	// Local States
 	const [showPassword, setShowPassword] = useState(false);
 	const [values, setValues] = useState({
@@ -24,6 +31,7 @@ const utils = () => {
 	// Functions Handlers
 	const handleChangeValue = ({ target: { name, value } }) => {
 		setValues({
+			...values,
 			[name]: value,
 		});
 		valid(name, value);
@@ -34,6 +42,19 @@ const utils = () => {
 		event.preventDefault();
 	};
 
+	// Function API
+	const submitSignin = async (values) => {
+		try {
+			await schema.validate(values, { abortEarly: false });
+
+			const response = await signIn(values);
+			console.log(response);
+			console.log(isAuthenticated);
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
 	return {
 		values,
 		errors,
@@ -41,6 +62,7 @@ const utils = () => {
 		handleTogglePassword,
 		handleMouseDownPassword,
 		handleChangeValue,
+		submitSignin,
 	};
 };
 

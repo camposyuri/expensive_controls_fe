@@ -18,6 +18,7 @@ const Form = () => {
 		handleChangeValue,
 		handleTogglePassword,
 		handleMouseDownPassword,
+		submitSignin,
 	} = utils();
 
 	return (
@@ -51,7 +52,7 @@ const Form = () => {
 						</Grid>
 						<Grid item marginBottom={3}>
 							<Input
-								id="senha"
+								id="password"
 								type={showPassword ? "text" : "password"}
 								name="password"
 								label="Senha"
@@ -77,7 +78,11 @@ const Form = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Button label="Login" fullWidth />
+					<Button
+						label="Login"
+						onClick={() => submitSignin(values)}
+						fullWidth
+					/>
 					<ContentRegister>
 						<span>
 							<Link to="/signup">

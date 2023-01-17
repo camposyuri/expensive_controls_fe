@@ -15,7 +15,7 @@ const Menu = () => {
 						<Link to="/customer-form">CustomerForm</Link>
 					</li>
 					<li>
-						<Link to="/">Log Out</Link>
+						<Link to="/logout">Log Out</Link>
 					</li>
 				</ul>
 			</nav>
