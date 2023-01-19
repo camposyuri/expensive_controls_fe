@@ -22,8 +22,22 @@ const RoutesComponents = () => {
 						</RequireAuth>
 					}
 				/>
-				<Route path="customer-list" element={<CustomerList />} />
-				<Route path="customer-form" element={<CustomerForm />} />
+				<Route
+					path="customer-list"
+					element={
+						<RequireAuth>
+							<CustomerList />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="customer-form"
+					element={
+						<RequireAuth>
+							<CustomerForm />
+						</RequireAuth>
+					}
+				/>
 			</Route>
 		</Routes>
 	);

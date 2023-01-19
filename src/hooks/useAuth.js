@@ -5,26 +5,27 @@ import { signin } from "../services/login";
 
 const initialValues = {
 	values: { admin: false, email: "", exp: 0, iat: 0, status: false, token: "" },
-	isAuthenticated: false,
 };
 
 const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(initialValues.values);
-	const isAuthenticated = useMemo(() => !!user.token, [user]);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const storagedUser = sessionStorage.getItem("@App:user");
-		const storagedToken = sessionStorage.getItem("@App:token");
+		const storagedUser = localStorage.getItem("@App:user");
+		const storagedToken = localStorage.getItem("@App:token");
 
 		if (storagedToken && storagedUser) {
 			setUser(JSON.parse(storagedUser));
 			api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
+			return navigate("/home");
 		}
 	}, []);
+
+	const isAuthenticated = useMemo(() => !!user.token, [user]);
 
 	const signIn = async (data) => {
 		const response = await signin(data);
@@ -33,13 +34,16 @@ export const AuthProvider = ({ children }) => {
 
 		api.defaults.headers.Authorization = `Bearer ${response.token}`;
 
-		sessionStorage.setItem("@App:user", JSON.stringify(response));
-		sessionStorage.setItem("@App:token", response.token);
-
-		if (isAuthenticated) return navigate("/home");
+		localStorage.setItem("@App:user", JSON.stringify(response));
+		localStorage.setItem("@App:token", response.token);
+		navigate("/home");
 	};
 
-	const logout = () => setUser(initialValues.values);
+	const signout = () => {
+		setUser(initialValues.values);
+		localStorage.removeItem("@App:user");
+		localStorage.removeItem("@App:token");
+	};
 
 	return (
 		<AuthContext.Provider
@@ -47,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 				user,
 				isAuthenticated,
 				signIn,
-				logout,
+				signout,
 			}}
 		>
 			{children}

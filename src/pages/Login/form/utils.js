@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import useValid from "../../../hooks/useValid";
+import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
 const initialValues = {
@@ -12,9 +12,7 @@ const initialValues = {
 
 const utils = () => {
 	// Hooks
-	const { signIn, isAuthenticated } = useAuth();
-
-	const navigate = useNavigate();
+	const { signIn } = useAuth();
 
 	// Local States
 	const [showPassword, setShowPassword] = useState(false);
@@ -25,6 +23,11 @@ const utils = () => {
 
 	// Messages and Errors
 	const [errors, setErrors] = useState({});
+	const [message, setMessage] = useState({
+		text: "",
+		show: false,
+		type: "",
+	});
 
 	const valid = useValid(schema, errors, setErrors);
 
@@ -47,22 +50,41 @@ const utils = () => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
-			const response = await signIn(values);
-			console.log(response);
-			console.log(isAuthenticated);
-		} catch (e) {
-			console.log(e);
+			await signIn(values);
+		} catch (error) {
+			const mappedErrors = getSchemaErrors(error);
+
+			setErrors({
+				...errors,
+				...mappedErrors,
+			});
+
+			setMessage({
+				text:
+					error?.response?.data?.error ||
+					"Erro ao logar na aplicação, tente novamente.",
+				show: true,
+				type: "error",
+			});
+			console.error(
+				error?.response?.data ? `Error: ${error?.response?.data?.error}` : error
+			);
 		}
 	};
 
+	//Function error
+	const handleCloseMessage = () => setMessage({ ...message, show: false });
+
 	return {
 		values,
+		message,
 		errors,
 		showPassword,
 		handleTogglePassword,
 		handleMouseDownPassword,
 		handleChangeValue,
 		submitSignin,
+		handleCloseMessage,
 	};
 };
 

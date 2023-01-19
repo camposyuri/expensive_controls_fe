@@ -1,6 +1,9 @@
 import { Link, Outlet } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Menu = () => {
+	const { signout } = useAuth();
+
 	return (
 		<div>
 			<nav>
@@ -15,7 +18,7 @@ const Menu = () => {
 						<Link to="/customer-form">CustomerForm</Link>
 					</li>
 					<li>
-						<Link to="/logout">Log Out</Link>
+						<Link onClick={() => signout()}>Log Out</Link>
 					</li>
 				</ul>
 			</nav>
