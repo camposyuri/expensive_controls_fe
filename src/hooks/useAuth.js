@@ -4,7 +4,15 @@ import api from "../services";
 import { signin } from "../services/login";
 
 const initialValues = {
-	values: { admin: false, email: "", exp: 0, iat: 0, status: false, token: "" },
+	values: {
+		admin: false,
+		email: "",
+		name: "",
+		exp: 0,
+		iat: 0,
+		status: false,
+		token: "",
+	},
 };
 
 const AuthContext = createContext({});

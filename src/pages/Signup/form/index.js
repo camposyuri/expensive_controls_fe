@@ -12,8 +12,15 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import utils from "./utils";
 
 const Form = () => {
-	const { showPassword, handleTogglePassword, handleMouseDownPassword } =
-		utils();
+	const {
+		values,
+		errors,
+		showPassword,
+		handleTogglePassword,
+		handleMouseDownPassword,
+		handleChangeValues,
+		submitSignUp,
+	} = utils();
 
 	return (
 		<Grid container>
@@ -33,18 +40,37 @@ const Form = () => {
 					<h2>Sign Up</h2>
 					<Grid item md={12} marginTop={5}>
 						<Grid item marginBottom={3}>
-							<Input id="name" name="name" label="Nome" fullWidth />
+							<Input
+								id="name"
+								name="name"
+								label="Nome"
+								value={values.name}
+								error={errors.name}
+								fullWidth
+								onChange={handleChangeValues}
+							/>
 						</Grid>
 						<Grid item marginBottom={3}>
-							<Input id="email" name="email" label="Email" fullWidth />
+							<Input
+								id="email"
+								name="email"
+								label="Email"
+								value={values.email}
+								error={errors.email}
+								fullWidth
+								onChange={handleChangeValues}
+							/>
 						</Grid>
 						<Grid item marginBottom={3}>
 							<Input
 								id="senha"
 								name="password"
 								label="Senha"
+								value={values.password}
+								error={errors.password}
 								fullWidth
 								type={showPassword ? "text" : "password"}
+								onChange={handleChangeValues}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
@@ -62,7 +88,11 @@ const Form = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Button label="Cadastrar" fullWidth />
+					<Button
+						label="Cadastrar"
+						fullWidth
+						onClick={() => submitSignUp(values)}
+					/>
 					<ContentRegister>
 						<span>ou continue com</span>
 					</ContentRegister>
