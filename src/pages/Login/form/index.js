@@ -94,15 +94,6 @@ const Form = () => {
 						</span>
 					</ContentRegister>
 				</Grid>
-				{/* <Snackbar
-					open={message.show}
-					autoHideDuration={6000}
-					onClose={handleCloseMessage}
-				>
-					<AlertGeneric onClose={handleCloseMessage} severity={message.type}>
-						{message.text}
-					</AlertGeneric>
-				</Snackbar> */}
 			</Content>
 		</Grid>
 	);

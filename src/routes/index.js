@@ -12,8 +12,8 @@ const RoutesComponents = () => {
 	return (
 		<Routes>
 			<Route path="/" element={<LoginForm />} />
+			<Route path="/signup" element={<SignUpForm />} />
 			<Route element={<Menu />}>
-				<Route path="/signup" element={<SignUpForm />} />
 				<Route
 					path="home"
 					element={
