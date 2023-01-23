@@ -12,6 +12,15 @@ export default createGlobalStyle`
 		font-size: 1rem;
 		color: ${({ theme }) => theme.colors.gray[900]};
 	}
+
+	a {
+		text-decoration: none;
+	}
+
+	ul li {
+		list-style: none;
+	}
+
 	.MuiButtonBase-root.MuiButton-root {
 		cursor: pointer;
 		background-color: ${({ theme }) => theme.colors.primary.main};
