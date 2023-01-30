@@ -9,7 +9,7 @@ import LoginForm from "../pages/Login/form";
 import Person from "../pages/Person";
 import Provider from "../pages/Provider";
 import SignUpForm from "../pages/Signup/form";
-import User from "../pages/User";
+import UserList from "../pages/User/list";
 import RequireAuth from "./RequireAuth";
 
 const RoutesComponents = () => {
@@ -31,7 +31,7 @@ const RoutesComponents = () => {
 					path="user"
 					element={
 						<RequireAuth>
-							<User />
+							<UserList />
 						</RequireAuth>
 					}
 				/>
