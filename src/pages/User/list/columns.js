@@ -1,26 +1,39 @@
 const columns = [
-	{ field: "id", headerName: "Código", width: 90 },
 	{
-		field: "name",
-		headerName: "Nome",
-		width: 150,
+		width: 100,
+		field: "id",
+		headerName: "Código",
+		headerAlign: "left",
+		disableColumnMenu: true,
 	},
 	{
+		width: 300,
 		field: "email",
 		headerName: "Email",
-		width: 150,
+		disableColumnMenu: true,
 	},
 	{
+		width: 100,
 		field: "status",
 		headerName: "Status",
-		type: "number",
-		width: 110,
+		align: "center",
+		disableColumnMenu: true,
 	},
 	{
+		width: 100,
 		field: "admin",
 		headerName: "Admin",
-		type: "number",
-		width: 110,
+		align: "center",
+		disableColumnMenu: true,
+	},
+	{
+		width: 100,
+		sortable: false,
+		field: "actions",
+		headerName: "Ação",
+		headerAlign: "center",
+		disableColumnMenu: true,
+		// a propriedade renderCell será adicionada no arquivo da tela de listagem
 	},
 ];
 

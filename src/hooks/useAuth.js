@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import api from "../services";
 import { signin } from "../services/login";
 
@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(initialValues.values);
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
 		const storagedUser = localStorage.getItem("@App:user");
@@ -29,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 		if (storagedToken && storagedUser) {
 			setUser(JSON.parse(storagedUser));
 			api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
-			return navigate("/home");
+			return navigate(location.pathname);
 		}
 	}, []);
 
