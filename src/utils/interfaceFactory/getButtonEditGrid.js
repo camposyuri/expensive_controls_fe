@@ -1,34 +1,33 @@
 /* eslint-disable indent */
 
 import { Delete, EditOutlined } from "@mui/icons-material";
+import styled from "styled-components";
 
 const getButtonEditGrid =
 	({ edit, remove }) =>
 	(params) => {
-		// const useStyles = styled((theme) => ({
-		// 	btnEditGrid: {
-		// 		color: theme.palette.primary.main,
-		// 		border: 0,
-		// 		paddingTop: theme.spacing(1),
-		// 		backgroundColor: "transparent",
-		// 		cursor: "pointer",
-		// 		"&:hover": {
-		// 			color: "#1e1e1e",
-		// 		},
-		// 	},
-		// }));
-		// const classes = useStyles();
+		const ButtonStyle = styled.button`
+			color: ${({ theme }) => theme.colors.primary.main};
+			border: 0;
+			padding-top: theme.spacing(1);
+			background-color: transparent;
+			cursor: pointer;
+			&:hover {
+				color: ${({ theme }) => theme.colors.primary.light};
+			}
+		`;
+
 		return (
 			<>
 				{edit && (
-					<button onClick={() => edit(params)}>
+					<ButtonStyle onClick={() => edit(params)}>
 						<EditOutlined fontSize="small" />
-					</button>
+					</ButtonStyle>
 				)}
 				{remove && (
-					<button onClick={() => remove(params)}>
+					<ButtonStyle onClick={() => remove(params)}>
 						<Delete fontSize="small" />
-					</button>
+					</ButtonStyle>
 				)}
 			</>
 		);

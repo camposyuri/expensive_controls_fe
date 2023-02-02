@@ -1,8 +1,12 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import getColumnsWithActions from "../../../utils/interfaceFactory/getColumnsWithActions";
 import columnsInitial from "./columns";
 
-const Utils = () => {
+const utils = () => {
+	const [pageSize, setPageSize] = useState(5);
+	const [page, setPage] = useState(0);
+
 	const navigate = useNavigate();
 
 	const columns = getColumnsWithActions(columnsInitial, {
@@ -11,6 +15,6 @@ const Utils = () => {
 		},
 	});
 
-	return { columns };
+	return { columns, pageSize, page, setPage, setPageSize };
 };
-export default Utils;
+export default utils;
