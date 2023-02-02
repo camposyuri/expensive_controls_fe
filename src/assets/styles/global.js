@@ -21,14 +21,14 @@ export default createGlobalStyle`
 		list-style: none;
 	}
 
-	.MuiButtonBase-root.MuiButton-root {
+	& .MuiButtonBase-root.MuiButton-root {
 		cursor: pointer;
 		background-color: ${({ theme }) => theme.colors.primary.main};
 		color: ${({ theme }) => theme.colors.primary.white};
 		border: none;
 		border-radius: 9px;
 		transition: all 0.4s ease-in-out;
-		font-family: 'Poppins';
+		font-family: "Poppins";
 		font-style: normal;
 		font-weight: 500;
 		font-size: 1rem;
