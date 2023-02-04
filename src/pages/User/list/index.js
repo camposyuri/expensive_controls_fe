@@ -4,7 +4,7 @@ import { Container, Content, Row, Title } from "./styles";
 import utils from "./utils";
 
 const Form = () => {
-	const { columns, page, pageSize, setPage, setPageSize } = utils();
+	const { columns, page, pageSize, setPage, setPageSize, navigate } = utils();
 
 	const rows = [
 		{ id: 1, name: "Snow", email: "Jon", status: true, admin: false },
@@ -27,7 +27,11 @@ const Form = () => {
 			<Content>
 				<Row>
 					<Title>Listagem de Usuário</Title>
-					<Button label="Novo" width="150" />
+					<Button
+						label="Novo"
+						width="150"
+						onClick={() => navigate("/user-form")}
+					/>
 				</Row>
 				<TableGrid
 					page={page}

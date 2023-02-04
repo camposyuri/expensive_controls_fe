@@ -9,6 +9,7 @@ import LoginForm from "../pages/Login/form";
 import Person from "../pages/Person";
 import Provider from "../pages/Provider";
 import SignUpForm from "../pages/Signup/form";
+import UserForm from "../pages/User/form";
 import UserList from "../pages/User/list";
 import RequireAuth from "./RequireAuth";
 
@@ -32,6 +33,15 @@ const RoutesComponents = () => {
 					element={
 						<RequireAuth>
 							<UserList />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="user-form"
+					element={
+						<RequireAuth>
+							<UserForm />
 						</RequireAuth>
 					}
 				/>

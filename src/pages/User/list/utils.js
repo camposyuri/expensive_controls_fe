@@ -15,6 +15,6 @@ const utils = () => {
 		},
 	});
 
-	return { columns, pageSize, page, setPage, setPageSize };
+	return { columns, pageSize, page, setPage, setPageSize, navigate };
 };
 export default utils;
