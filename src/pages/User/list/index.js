@@ -1,5 +1,6 @@
+import Button from "../../../components/Button";
 import TableGrid from "../../../components/TableGrid";
-import { Container } from "./styles";
+import { Container, Content, Row, Title } from "./styles";
 import utils from "./utils";
 
 const Form = () => {
@@ -23,18 +24,23 @@ const Form = () => {
 
 	return (
 		<Container>
-			<h1>Hello World</h1>
-			<TableGrid
-				page={page}
-				pageSize={pageSize}
-				columns={columns}
-				rows={rows}
-				rowHeight={52}
-				headerHeight={40}
-				rowsPerPageOptions={[5, 10, 20]}
-				onPageChange={(newPage) => setPage(newPage)}
-				onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-			/>
+			<Content>
+				<Row>
+					<Title>Listagem de Usuário</Title>
+					<Button label="Novo" width="150" />
+				</Row>
+				<TableGrid
+					page={page}
+					pageSize={pageSize}
+					columns={columns}
+					rows={rows}
+					rowHeight={52}
+					headerHeight={40}
+					rowsPerPageOptions={[5, 10, 20]}
+					onPageChange={(newPage) => setPage(newPage)}
+					onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+				/>
+			</Content>
 		</Container>
 	);
 };
