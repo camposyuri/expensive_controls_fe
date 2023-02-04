@@ -90,6 +90,7 @@ const Form = () => {
 					</Grid>
 					<Button
 						label="Cadastrar"
+						width="369"
 						fullWidth
 						onClick={() => submitSignUp(values)}
 					/>

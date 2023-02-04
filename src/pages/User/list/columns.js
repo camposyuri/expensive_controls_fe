@@ -7,7 +7,8 @@ const columns = [
 		disableColumnMenu: true,
 	},
 	{
-		width: 300,
+		flex: 0.6,
+		minWidth: 300,
 		field: "email",
 		headerName: "Email",
 		disableColumnMenu: true,
@@ -20,7 +21,7 @@ const columns = [
 		disableColumnMenu: true,
 	},
 	{
-		width: 100,
+		width: 150,
 		field: "admin",
 		headerName: "Admin",
 		align: "center",
@@ -32,6 +33,7 @@ const columns = [
 		field: "actions",
 		headerName: "Ação",
 		headerAlign: "center",
+		align: "center",
 		disableColumnMenu: true,
 		// a propriedade renderCell será adicionada no arquivo da tela de listagem
 	},

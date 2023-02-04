@@ -82,6 +82,7 @@ const Form = () => {
 					</Grid>
 					<Button
 						label="Login"
+						width="369"
 						onClick={() => submitSignin(values)}
 						fullWidth
 					/>
