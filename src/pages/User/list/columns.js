@@ -7,6 +7,13 @@ const columns = [
 		disableColumnMenu: true,
 	},
 	{
+		width: 180,
+		field: "name",
+		headerName: "Nome",
+		align: "left",
+		disableColumnMenu: true,
+	},
+	{
 		flex: 0.6,
 		minWidth: 300,
 		field: "email",
