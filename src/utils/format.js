@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const formatCpfCnpj = (text) => {
 	const regexCpf = /(\d{3})(\d{3})(\d{3})(\d{2})/;
 	const regexCnpj = /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/;
@@ -22,4 +24,35 @@ const formatCellphone = (value) => {
 	return celular.replace(regexCelular, "($1) $2-$3");
 };
 
-export { formatCpfCnpj, formatTelephone, formatCellphone };
+// export default function functionsDate() {
+// 	/**
+// 	 * @param {string} value
+// 	 * @returns {boolean}
+// 	 */
+// 	const isValid = (value) => {
+// 		return moment(value).isValid();
+// 	};
+
+// 	/**
+// 	 * @param {timestamp} value
+// 	 * @returns {string|empty}
+// 	 */
+// 	const formatDateOrEmpty = (value, mask = "DD/MM/YYYY") => {
+// 		return isValid(value) ? moment(value).format(mask) : "";
+// 	};
+
+// 	return {
+// 		isValid,
+// 		formatDateOrEmpty,
+// 	};
+// }
+
+const isValid = (value) => {
+	return moment(value).isValid();
+};
+
+const formatDateOrEmpty = (value, mask = "DD/MM/YYYY") => {
+	return isValid(value) ? moment(value).format(mask) : "";
+};
+
+export { formatCpfCnpj, formatTelephone, formatCellphone, formatDateOrEmpty };

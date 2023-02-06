@@ -6,7 +6,7 @@ import CustomerForm from "../pages/Customer/form";
 import CustomerList from "../pages/Customer/list";
 import Home from "../pages/Home";
 import LoginForm from "../pages/Login/form";
-import Person from "../pages/Person";
+import PersonList from "../pages/Person/list";
 import ProviderList from "../pages/Provider/list";
 import SignUpForm from "../pages/Signup/form";
 import UserForm from "../pages/User/form";
@@ -68,7 +68,7 @@ const RoutesComponents = () => {
 					path="person"
 					element={
 						<RequireAuth>
-							<Person />
+							<PersonList />
 						</RequireAuth>
 					}
 				/>
