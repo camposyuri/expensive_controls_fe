@@ -4,7 +4,7 @@ import TableGrid from "../../../components/TableGrid";
 import { Container, Content, Row, Title } from "./styles";
 import utils from "./utils";
 
-const Form = () => {
+const List = () => {
 	const {
 		user,
 		page,
@@ -50,4 +50,4 @@ const Form = () => {
 	);
 };
 
-export default Form;
+export default List;
