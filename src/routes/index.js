@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Menu from "../components/Menu";
-import Account from "../pages/Account";
+import AccountList from "../pages/Account/list";
 import CustomerForm from "../pages/Customer/form";
 import CustomerList from "../pages/Customer/list";
 import Home from "../pages/Home";
@@ -77,7 +77,7 @@ const RoutesComponents = () => {
 					path="account"
 					element={
 						<RequireAuth>
-							<Account />
+							<AccountList />
 						</RequireAuth>
 					}
 				/>

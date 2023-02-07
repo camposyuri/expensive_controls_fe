@@ -55,4 +55,15 @@ const formatDateOrEmpty = (value, mask = "DD/MM/YYYY") => {
 	return isValid(value) ? moment(value).format(mask) : "";
 };
 
-export { formatCpfCnpj, formatTelephone, formatCellphone, formatDateOrEmpty };
+const formatterMoney = new Intl.NumberFormat("pt-BR", {
+	style: "currency",
+	currency: "BRL",
+});
+
+export {
+	formatCpfCnpj,
+	formatTelephone,
+	formatCellphone,
+	formatDateOrEmpty,
+	formatterMoney,
+};
