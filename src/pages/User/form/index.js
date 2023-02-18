@@ -121,13 +121,13 @@ const Form = () => {
 				<Elements.ContentButton>
 					<Button
 						label="Cancelar"
-						width="200"
+						width="140"
 						// fullWidth
 						// onClick={() => su(values)}
 					/>
 					<Button
 						label="Cadastrar"
-						width="200"
+						width="140"
 						// fullWidth
 						// onClick={() => submitSignUp(values)}
 					/>

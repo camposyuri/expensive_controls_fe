@@ -28,7 +28,7 @@ const List = () => {
 					<Title>Listagem de Usuário</Title>
 					<Button
 						label="Novo"
-						width="150"
+						width="140"
 						onClick={() => navigate("/user-form")}
 					/>
 				</Row>

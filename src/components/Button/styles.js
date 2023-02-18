@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const ButtonStyle = styled(MuiButton)`
 	width: ${({ width }) => width}px;
-	height: 45px;
+	height: 40px;
 	color: ${({ color }) => color};
 `;
 
