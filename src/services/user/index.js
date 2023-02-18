@@ -10,4 +10,14 @@ const getUsers = async () => {
 	}
 };
 
-export { getUsers };
+const postUsers = async (data) => {
+	try {
+		const response = await api.post("/users", data);
+
+		if (response.status === 200) return response.data;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
+
+export { getUsers, postUsers };

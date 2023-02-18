@@ -16,6 +16,10 @@ const Form = () => {
 		values,
 		errors,
 		showPassword,
+		navigate,
+		handleSave,
+		handleChangeValues,
+		handleChangeChecked,
 		handleMouseDownPassword,
 		handleTogglePassword,
 	} = utils();
@@ -42,9 +46,7 @@ const Form = () => {
 							label="Código"
 							disabled
 							value={values.id}
-							error={errors.id}
 							fullWidth
-							// onChange={handleChangeValues}
 						/>
 					</Elements.InputCode>
 					<Elements.InputName>
@@ -56,7 +58,7 @@ const Form = () => {
 							error={errors.name}
 							fullWidth
 							required
-							// onChange={handleChangeValues}
+							onChange={handleChangeValues}
 						/>
 					</Elements.InputName>
 					<Elements.InputEmail>
@@ -68,7 +70,7 @@ const Form = () => {
 							value={values.email}
 							error={errors.email}
 							fullWidth
-							// onChange={handleChangeValues}
+							onChange={handleChangeValues}
 						/>
 					</Elements.InputEmail>
 
@@ -82,7 +84,7 @@ const Form = () => {
 							error={errors.password}
 							fullWidth
 							type={showPassword ? "text" : "password"}
-							// onChange={handleChangeValues}
+							onChange={handleChangeValues}
 							InputProps={{
 								endAdornment: (
 									<InputAdornment position="end">
@@ -101,7 +103,15 @@ const Form = () => {
 					</Elements.InputPassword>
 
 					<FormControlLabel
-						control={<Switch defaultChecked value={values.status} />}
+						control={
+							<Switch
+								value={values.status}
+								checked={values.status !== false ? true : false}
+								name="status"
+								color="primary"
+								onChange={({ target: { name } }) => handleChangeChecked(name)}
+							/>
+						}
 						label="Ativo"
 					/>
 
@@ -110,8 +120,8 @@ const Form = () => {
 							<Checkbox
 								value={values.admin}
 								checked={values.admin !== false ? true : false}
-								// onChange={handleChangeChecked}
-								name="administrador"
+								onChange={({ target: { name } }) => handleChangeChecked(name)}
+								name="admin"
 								color="primary"
 							/>
 						}
@@ -122,15 +132,9 @@ const Form = () => {
 					<Button
 						label="Cancelar"
 						width="140"
-						// fullWidth
-						// onClick={() => su(values)}
+						onClick={() => navigate("/user")}
 					/>
-					<Button
-						label="Cadastrar"
-						width="140"
-						// fullWidth
-						// onClick={() => submitSignUp(values)}
-					/>
+					<Button label="Cadastrar" width="140" onClick={handleSave} />
 				</Elements.ContentButton>
 			</Elements.Row>
 		</Elements.Container>
