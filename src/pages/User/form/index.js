@@ -119,7 +119,7 @@ const Form = () => {
 						control={
 							<Checkbox
 								value={values.admin}
-								checked={values.admin !== false ? true : false}
+								checked={!values.admin ? false : true}
 								onChange={({ target: { name } }) => handleChangeChecked(name)}
 								name="admin"
 								color="primary"
