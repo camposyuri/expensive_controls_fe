@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
-import { postUsers } from "../../../services/user";
+import { getUsersById, postUsers, putUsers } from "../../../services/user";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -28,6 +28,7 @@ const utils = () => {
 
 	const navigate = useNavigate();
 	const valid = useValid(schema, errors, setErrors);
+	const { id } = useParams();
 
 	const handleTogglePassword = () => setShowPassword((show) => !show);
 	const handleMouseDownPassword = (event) => event.preventDefault();
@@ -48,11 +49,27 @@ const utils = () => {
 		});
 	};
 
+	const getMotivoCliente = async () => {
+		try {
+			const response = await getUsersById(id);
+			const { idUser, ...rest } = Array.isArray(response)
+				? response[0]
+				: response;
+
+			const responseUser = { id: idUser, ...rest };
+			setValues(responseUser);
+		} catch (error) {
+			console.error(error.message ? `Error: ${error.message}` : error);
+		}
+	};
+
 	const submitUsers = async (values) => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
-			const response = await postUsers(values);
+			const response = id
+				? await putUsers(id, values)
+				: await postUsers(values);
 
 			const { idUser, ...rest } = Array.isArray(response)
 				? response[0]
@@ -86,6 +103,7 @@ const utils = () => {
 		handleChangeChecked,
 		handleTogglePassword,
 		handleMouseDownPassword,
+		getMotivoCliente,
 	};
 };
 

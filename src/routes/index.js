@@ -45,6 +45,14 @@ const RoutesComponents = () => {
 						</RequireAuth>
 					}
 				/>
+				<Route
+					path="user/:id"
+					element={
+						<RequireAuth>
+							<UserForm />
+						</RequireAuth>
+					}
+				/>
 
 				<Route
 					path="customer"
