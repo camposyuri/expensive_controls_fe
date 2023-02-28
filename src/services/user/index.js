@@ -10,6 +10,16 @@ const getUsers = async () => {
 	}
 };
 
+const getUsersById = async (id) => {
+	try {
+		const response = await api.get(`/users/${id}`);
+
+		if (response.status === 200) return response.data;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
+
 const postUsers = async (data) => {
 	try {
 		const response = await api.post("/users", data);
@@ -20,4 +30,14 @@ const postUsers = async (data) => {
 	}
 };
 
-export { getUsers, postUsers };
+const putUsers = async (id, data) => {
+	try {
+		const response = await api.put(`/users/${id}`, data);
+
+		if (response.status === 200) return response.data;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
+
+export { getUsers, postUsers, getUsersById, putUsers };
