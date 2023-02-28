@@ -45,6 +45,9 @@ const Form = () => {
 							name="id"
 							label="Código"
 							disabled
+							InputLabelProps={{
+								shrink: true,
+							}}
 							value={values.id}
 							fullWidth
 						/>
@@ -58,6 +61,9 @@ const Form = () => {
 							error={errors.name}
 							fullWidth
 							required
+							InputLabelProps={{
+								shrink: true,
+							}}
 							onChange={handleChangeValues}
 						/>
 					</Elements.InputName>
@@ -70,6 +76,9 @@ const Form = () => {
 							value={values.email}
 							error={errors.email}
 							fullWidth
+							InputLabelProps={{
+								shrink: true,
+							}}
 							onChange={handleChangeValues}
 						/>
 					</Elements.InputEmail>
@@ -85,6 +94,9 @@ const Form = () => {
 							fullWidth
 							type={showPassword ? "text" : "password"}
 							onChange={handleChangeValues}
+							InputLabelProps={{
+								shrink: true,
+							}}
 							InputProps={{
 								endAdornment: (
 									<InputAdornment position="end">
