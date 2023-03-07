@@ -72,7 +72,7 @@ export const ContentButton = styled.div`
 	justify-content: flex-end;
 	flex-wrap: wrap;
 	flex: 1;
-	margin-top: 15px;
+	margin: 10px 0 15px 0;
 	gap: 20px;
 
 	@media (max-width: 768px) {

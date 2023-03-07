@@ -8,6 +8,7 @@ export const InputStyle = styled(TextField)`
 		background: ${({ theme }) => theme.colors.primary.white};
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
 		outline: 0;
+		padding: 10px;
 	}
 
 	.MuiInputLabel-root {
