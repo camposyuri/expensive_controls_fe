@@ -30,6 +30,11 @@ const utils = () => {
 	const valid = useValid(schema, errors, setErrors);
 	const { id } = useParams();
 
+	const options = [
+		{ id: 1, descricao: "PF" },
+		{ id: 2, descricao: "PJ" },
+	];
+
 	const handleTogglePassword = () => setShowPassword((show) => !show);
 	const handleMouseDownPassword = (event) => event.preventDefault();
 
@@ -49,7 +54,14 @@ const utils = () => {
 		});
 	};
 
-	const getUserID = async () => {
+	const showOptionsDropDown = () => {
+		return (options || []).map(({ id, descricao }) => ({
+			value: id,
+			description: descricao,
+		}));
+	};
+
+	const getMotivoCliente = async () => {
 		try {
 			const response = await getUsersById(id);
 			const { idUser, ...rest } = Array.isArray(response)
@@ -103,7 +115,8 @@ const utils = () => {
 		handleChangeChecked,
 		handleTogglePassword,
 		handleMouseDownPassword,
-		getUserID,
+		getMotivoCliente,
+		showOptionsDropDown,
 	};
 };
 
