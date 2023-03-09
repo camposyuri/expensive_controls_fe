@@ -1,29 +1,47 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
-import { getUsersById, postUsers, putUsers } from "../../../services/user";
+import { postCustomer } from "../../../services/customer";
+import { getUsersById } from "../../../services/user";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
 const initialValues = {
 	id: 0,
-	name: "",
-	email: "",
-	password: "",
+	corporatename: "",
+	fantasyname: "",
+	cpfcnpj: "",
+	typeperson: "",
+	telephone: "",
+	phone: "",
 	status: true,
-	admin: false,
+	zipcode: "",
+	publicplace: "",
+	number: "",
+	complement: "",
+	county: "",
+	district: "",
+	uf: "",
 };
 
 const utils = () => {
 	const [values, setValues] = useState({
-		name: initialValues.name,
-		email: initialValues.email,
-		password: initialValues.password,
+		corporatename: initialValues.corporatename,
+		fantasyname: initialValues.fantasyname,
+		cpfcnpj: initialValues.cpfcnpj,
+		typeperson: initialValues.typeperson,
+		telephone: initialValues.telephone,
+		phone: initialValues.phone,
 		status: initialValues.status,
-		admin: initialValues.admin,
+		zipcode: initialValues.zipcode,
+		publicplace: initialValues.publicplace,
+		number: initialValues.number,
+		complement: initialValues.complement,
+		county: initialValues.county,
+		district: initialValues.district,
+		uf: initialValues.uf,
 	});
 
-	const [showPassword, setShowPassword] = useState(false);
 	const [errors, setErrors] = useState({});
 
 	const navigate = useNavigate();
@@ -31,12 +49,9 @@ const utils = () => {
 	const { id } = useParams();
 
 	const options = [
-		{ id: 1, descricao: "PF" },
-		{ id: 2, descricao: "PJ" },
+		{ id: "F", descricao: "PF" },
+		{ id: "J", descricao: "PJ" },
 	];
-
-	const handleTogglePassword = () => setShowPassword((show) => !show);
-	const handleMouseDownPassword = (event) => event.preventDefault();
 
 	const handleChangeValues = ({ target: { name, value } }) => {
 		setValues({
@@ -47,6 +62,7 @@ const utils = () => {
 		valid(name, value);
 	};
 
+	console.log(values);
 	const handleChangeChecked = (name) => {
 		setValues({
 			...values,
@@ -75,26 +91,26 @@ const utils = () => {
 		}
 	};
 
-	const submitUsers = async (values) => {
+	const submitCustomer = async (values) => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
-			const response = id
-				? await putUsers(id, values)
-				: await postUsers(values);
+			const response = await postCustomer(values);
 
-			const { idUser, ...rest } = Array.isArray(response)
+			// id
+			// 	? await putUsers(id, values)
+			const { idCustomer, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
 
-			const responseUser = { id: idUser, ...rest };
+			const responseUser = { id: idCustomer, ...rest };
 			setValues(responseUser);
 			setTimeout(() => {
-				navigate("/user");
+				navigate("/customer");
 			}, 1000);
 		} catch (error) {
 			const mappedErrors = getSchemaErrors(error);
-
+			console.log(error);
 			setErrors({
 				...errors,
 				...mappedErrors,
@@ -103,18 +119,15 @@ const utils = () => {
 		}
 	};
 
-	const handleSave = () => submitUsers(values);
+	const handleSave = () => submitCustomer(values);
 
 	return {
 		values,
 		errors,
-		showPassword,
 		navigate,
 		handleSave,
 		handleChangeValues,
 		handleChangeChecked,
-		handleTogglePassword,
-		handleMouseDownPassword,
 		getMotivoCliente,
 		showOptionsDropDown,
 	};

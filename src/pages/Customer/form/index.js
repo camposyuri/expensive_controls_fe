@@ -57,11 +57,11 @@ const Form = () => {
 					</Elements.InputCode>
 					<Elements.InputSize>
 						<Input
-							id="corporateReason"
-							name="corporateReason"
+							id="corporatename"
+							name="corporatename"
 							label="Razão Social"
-							value={values.name}
-							error={errors.name}
+							value={values.corporatename}
+							error={errors.corporatename}
 							fullWidth
 							required
 							InputLabelProps={{
@@ -72,11 +72,11 @@ const Form = () => {
 					</Elements.InputSize>
 					<Elements.InputSize>
 						<Input
-							id="fantasyName"
-							name="fantasyName"
+							id="fantasyname"
+							name="fantasyname"
 							label="Nome Fantasia"
-							value={values.email}
-							error={errors.email}
+							value={values.fantasyname}
+							error={errors.fantasyname}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -87,26 +87,12 @@ const Form = () => {
 
 					<Elements.InputSize>
 						<Input
-							id="document"
-							name="document"
+							id="cpfcnpj"
+							name="cpfcnpj"
 							label="CPF/CNPJ"
 							required
-							value={values.email}
-							error={errors.email}
-							fullWidth
-							InputLabelProps={{
-								shrink: true,
-							}}
-							onChange={handleChangeValues}
-						/>
-					</Elements.InputSize>
-					<Elements.InputSize>
-						<Input
-							id="rg"
-							name="rg"
-							label="RG"
-							value={values.email}
-							error={errors.email}
+							value={values.cpfcnpj}
+							error={errors.cpfcnpj}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -115,20 +101,19 @@ const Form = () => {
 						/>
 					</Elements.InputSize>
 
-					{/* TODO: Component select */}
 					<Elements.InputSize>
 						<Select
-							name="codEmpresa"
+							name="typeperson"
 							label="Tipo Pessoa"
 							fullWidth
 							variant="outlined"
 							size="small"
-							value={values.codEmpresa}
+							value={values.typeperson}
 							options={showOptionsDropDown()}
-							// onChange={onChangeEmpresa}
-							InputLabelProps={{
-								shrink: true,
-							}}
+							onChange={handleChangeValues}
+							// InputLabelProps={{
+							// 	shrink: true,
+							// }}
 						/>
 					</Elements.InputSize>
 
@@ -137,8 +122,8 @@ const Form = () => {
 							id="telephone"
 							name="telephone"
 							label="Telefone"
-							value={values.email}
-							error={errors.email}
+							value={values.telephone}
+							error={errors.telephone}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -149,12 +134,12 @@ const Form = () => {
 
 					<Elements.InputSize>
 						<Input
-							id="cellphone"
-							name="cellphone"
+							id="phone"
+							name="phone"
 							label="Celular"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.phone}
+							error={errors.phone}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -182,8 +167,8 @@ const Form = () => {
 							name="zipcode"
 							label="CEP"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.zipcode}
+							error={errors.zipcode}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -194,12 +179,12 @@ const Form = () => {
 
 					<Elements.InputSize>
 						<Input
-							id="address"
-							name="address"
+							id="publicplace"
+							name="publicplace"
 							label="Endereço"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.publicplace}
+							error={errors.publicplace}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -214,8 +199,8 @@ const Form = () => {
 							name="number"
 							label="Número"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.number}
+							error={errors.number}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -229,8 +214,8 @@ const Form = () => {
 							id="complement"
 							name="complement"
 							label="Complemento"
-							value={values.email}
-							error={errors.email}
+							value={values.complement}
+							error={errors.complement}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -245,8 +230,8 @@ const Form = () => {
 							name="county"
 							label="Município"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.county}
+							error={errors.county}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -257,12 +242,12 @@ const Form = () => {
 
 					<Elements.InputSize>
 						<Input
-							id="neighborhood"
-							name="neighborhood"
+							id="district"
+							name="district"
 							label="Bairro"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.district}
+							error={errors.district}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
@@ -277,8 +262,8 @@ const Form = () => {
 							name="uf"
 							label="UF"
 							required
-							value={values.email}
-							error={errors.email}
+							value={values.uf}
+							error={errors.uf}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
