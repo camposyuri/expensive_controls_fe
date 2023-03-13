@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Menu from "../components/Menu";
 import AccountList from "../pages/Account/list";
 import CustomerForm from "../pages/Customer/form";
-import CustomerList from "../pages/Customer/list";
 import Home from "../pages/Home";
 import LoginForm from "../pages/Login/form";
 import PersonList from "../pages/Person/list";
@@ -12,6 +11,8 @@ import SignUpForm from "../pages/Signup/form";
 import UserForm from "../pages/User/form";
 import UserList from "../pages/User/list";
 import RequireAuth from "./RequireAuth";
+
+import CustomerList from "../pages/Customer/list";
 
 const RoutesComponents = () => {
 	return (
@@ -55,15 +56,6 @@ const RoutesComponents = () => {
 				/>
 
 				<Route
-					path="customer"
-					element={
-						<RequireAuth>
-							<CustomerList />
-						</RequireAuth>
-					}
-				/>
-
-				<Route
 					path="provider"
 					element={
 						<RequireAuth>
@@ -91,7 +83,25 @@ const RoutesComponents = () => {
 				/>
 
 				<Route
+					path="customer"
+					element={
+						<RequireAuth>
+							<CustomerList />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
 					path="customer-form"
+					element={
+						<RequireAuth>
+							<CustomerForm />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="customer/:id"
 					element={
 						<RequireAuth>
 							<CustomerForm />

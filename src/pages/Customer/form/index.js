@@ -16,21 +16,22 @@ const Form = () => {
 		navigate,
 		handleSave,
 		handleChangeValues,
+		handleChangeValuesAddress,
 		handleChangeChecked,
-		getMotivoCliente,
+		getCustomerId,
 		showOptionsDropDown,
 	} = utils();
 
 	useEffect(() => {
 		(async () => {
-			if (id) await getMotivoCliente();
+			if (id) await getCustomerId();
 		})();
 	}, []);
 
 	return (
 		<Elements.Container>
 			<Elements.Row>
-				<Elements.StyledLink to="/user">
+				<Elements.StyledLink to="/customer">
 					<Elements.Icon>
 						<ArrowBack />
 					</Elements.Icon>
@@ -148,18 +149,20 @@ const Form = () => {
 						/>
 					</Elements.InputSize>
 
-					<FormControlLabel
-						control={
-							<Switch
-								value={values.status}
-								checked={values.status !== false ? true : false}
-								name="status"
-								color="primary"
-								onChange={({ target: { name } }) => handleChangeChecked(name)}
-							/>
-						}
-						label="Ativo"
-					/>
+					<Elements.InputSize>
+						<FormControlLabel
+							control={
+								<Switch
+									value={values.status}
+									checked={values.status !== false ? true : false}
+									name="status"
+									color="primary"
+									onChange={({ target: { name } }) => handleChangeChecked(name)}
+								/>
+							}
+							label="Ativo"
+						/>
+					</Elements.InputSize>
 
 					<Elements.InputSize>
 						<Input
@@ -167,13 +170,13 @@ const Form = () => {
 							name="zipcode"
 							label="CEP"
 							required
-							value={values.zipcode}
-							error={errors.zipcode}
+							value={values?.endereco?.zipcode}
+							error={errors?.endereco?.zipcode}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -183,13 +186,13 @@ const Form = () => {
 							name="publicplace"
 							label="Endereço"
 							required
-							value={values.publicplace}
-							error={errors.publicplace}
+							value={values?.endereco?.publicplace}
+							error={errors?.endereco?.publicplace}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -199,13 +202,13 @@ const Form = () => {
 							name="number"
 							label="Número"
 							required
-							value={values.number}
-							error={errors.number}
+							value={values?.endereco?.number}
+							error={errors?.endereco?.number}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -214,13 +217,13 @@ const Form = () => {
 							id="complement"
 							name="complement"
 							label="Complemento"
-							value={values.complement}
-							error={errors.complement}
+							value={values?.endereco?.complement}
+							error={errors?.endereco?.complement}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -230,13 +233,13 @@ const Form = () => {
 							name="county"
 							label="Município"
 							required
-							value={values.county}
-							error={errors.county}
+							value={values?.endereco?.county}
+							error={errors?.endereco?.county}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -246,13 +249,13 @@ const Form = () => {
 							name="district"
 							label="Bairro"
 							required
-							value={values.district}
-							error={errors.district}
+							value={values?.endereco?.district}
+							error={errors?.endereco?.district}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 
@@ -262,13 +265,13 @@ const Form = () => {
 							name="uf"
 							label="UF"
 							required
-							value={values.uf}
-							error={errors.uf}
+							value={values?.endereco?.uf}
+							error={errors?.endereco?.uf}
 							fullWidth
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							onChange={handleChangeValuesAddress}
 						/>
 					</Elements.InputSize>
 				</Elements.Content>

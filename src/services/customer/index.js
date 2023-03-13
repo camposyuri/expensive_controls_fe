@@ -20,4 +20,14 @@ const postCustomer = async (data) => {
 	}
 };
 
-export { getCustomer, postCustomer };
+const getCustomerById = async (id) => {
+	try {
+		const response = await api.get(`/customer/${id}`);
+
+		if (response.status === 200) return response.data;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
+
+export { getCustomer, postCustomer, getCustomerById };

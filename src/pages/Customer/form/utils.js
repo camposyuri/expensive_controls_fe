@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
-import { postCustomer } from "../../../services/customer";
-import { getUsersById } from "../../../services/user";
+import { getCustomerById, postCustomer } from "../../../services/customer";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -15,13 +14,15 @@ const initialValues = {
 	telephone: "",
 	phone: "",
 	status: true,
-	zipcode: "",
-	publicplace: "",
-	number: "",
-	complement: "",
-	county: "",
-	district: "",
-	uf: "",
+	endereco: {
+		zipcode: "",
+		publicplace: "",
+		number: "",
+		complement: "",
+		county: "",
+		district: "",
+		uf: "",
+	},
 };
 
 const utils = () => {
@@ -33,13 +34,15 @@ const utils = () => {
 		telephone: initialValues.telephone,
 		phone: initialValues.phone,
 		status: initialValues.status,
-		zipcode: initialValues.zipcode,
-		publicplace: initialValues.publicplace,
-		number: initialValues.number,
-		complement: initialValues.complement,
-		county: initialValues.county,
-		district: initialValues.district,
-		uf: initialValues.uf,
+		endereco: {
+			zipcode: initialValues.endereco.zipcode,
+			publicplace: initialValues.endereco.publicplace,
+			number: initialValues.endereco.number,
+			complement: initialValues.endereco.complement,
+			county: initialValues.endereco.county,
+			district: initialValues.endereco.district,
+			uf: initialValues.endereco.uf,
+		},
 	});
 
 	const [errors, setErrors] = useState({});
@@ -62,7 +65,19 @@ const utils = () => {
 		valid(name, value);
 	};
 
-	console.log(values);
+	const handleChangeValuesAddress = ({ target: { name, value } }) => {
+		console.log({ [name]: value });
+		setValues({
+			...values,
+			endereco: {
+				...values.endereco,
+				[name]: value,
+			},
+		});
+
+		valid(name, value);
+	};
+
 	const handleChangeChecked = (name) => {
 		setValues({
 			...values,
@@ -77,9 +92,9 @@ const utils = () => {
 		}));
 	};
 
-	const getMotivoCliente = async () => {
+	const getCustomerId = async () => {
 		try {
-			const response = await getUsersById(id);
+			const response = await getCustomerById(id);
 			const { idUser, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
@@ -107,12 +122,14 @@ const utils = () => {
 			setValues(responseUser);
 			setTimeout(() => {
 				navigate("/customer");
-			}, 1000);
+			}, 500);
 		} catch (error) {
 			const mappedErrors = getSchemaErrors(error);
 			console.log(error);
+
 			setErrors({
 				...errors,
+				...errors?.endereco,
 				...mappedErrors,
 			});
 			console.error(error.message ? `Error: ${error.message}` : error);
@@ -127,8 +144,9 @@ const utils = () => {
 		navigate,
 		handleSave,
 		handleChangeValues,
+		handleChangeValuesAddress,
 		handleChangeChecked,
-		getMotivoCliente,
+		getCustomerId,
 		showOptionsDropDown,
 	};
 };
