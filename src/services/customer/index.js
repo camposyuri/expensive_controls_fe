@@ -30,4 +30,14 @@ const getCustomerById = async (id) => {
 	}
 };
 
-export { getCustomer, postCustomer, getCustomerById };
+const putCustomer = async (id, data) => {
+	try {
+		const response = await api.put(`/customer/${id}`, data);
+
+		if (response.status === 200) return response.data;
+	} catch (error) {
+		throw new Error(error);
+	}
+};
+
+export { getCustomer, postCustomer, getCustomerById, putCustomer };

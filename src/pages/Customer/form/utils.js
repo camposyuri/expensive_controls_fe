@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
-import { getCustomerById, postCustomer } from "../../../services/customer";
+import {
+	getCustomerById,
+	postCustomer,
+	putCustomer,
+} from "../../../services/customer";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -110,10 +114,10 @@ const utils = () => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
-			const response = await postCustomer(values);
+			const response = id
+				? await putCustomer(id, values)
+				: await postCustomer(values);
 
-			// id
-			// 	? await putUsers(id, values)
 			const { idCustomer, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
