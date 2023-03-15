@@ -6,6 +6,7 @@ import CustomerForm from "../pages/Customer/form";
 import Home from "../pages/Home";
 import LoginForm from "../pages/Login/form";
 import PersonList from "../pages/Person/list";
+import ProviderForm from "../pages/Provider/form";
 import ProviderList from "../pages/Provider/list";
 import SignUpForm from "../pages/Signup/form";
 import UserForm from "../pages/User/form";
@@ -60,6 +61,24 @@ const RoutesComponents = () => {
 					element={
 						<RequireAuth>
 							<ProviderList />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="provider-form"
+					element={
+						<RequireAuth>
+							<ProviderForm />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="provider/:id"
+					element={
+						<RequireAuth>
+							<ProviderForm />
 						</RequireAuth>
 					}
 				/>

@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
 import {
-	getCustomerById,
-	postCustomer,
-	putCustomer,
-} from "../../../services/customer";
+	getProviderById,
+	postProvider,
+	putProvider,
+} from "../../../services/provider";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -95,9 +95,9 @@ const utils = () => {
 		}));
 	};
 
-	const getCustomerId = async () => {
+	const getProviderId = async () => {
 		try {
-			const response = await getCustomerById(id);
+			const response = await getProviderById(id);
 			const { idUser, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
@@ -109,13 +109,13 @@ const utils = () => {
 		}
 	};
 
-	const submitCustomer = async (values) => {
+	const submitProvider = async (values) => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
 			const response = id
-				? await putCustomer(id, values)
-				: await postCustomer(values);
+				? await putProvider(id, values)
+				: await postProvider(values);
 
 			const { idCustomer, ...rest } = Array.isArray(response)
 				? response[0]
@@ -124,7 +124,7 @@ const utils = () => {
 			const responseUser = { id: idCustomer, ...rest };
 			setValues(responseUser);
 			setTimeout(() => {
-				navigate("/customer");
+				navigate("/provider");
 			}, 500);
 		} catch (error) {
 			const mappedErrors = getSchemaErrors(error);
@@ -139,7 +139,7 @@ const utils = () => {
 		}
 	};
 
-	const handleSave = () => submitCustomer(values);
+	const handleSave = () => submitProvider(values);
 
 	return {
 		values,
@@ -149,7 +149,7 @@ const utils = () => {
 		handleChangeValues,
 		handleChangeValuesAddress,
 		handleChangeChecked,
-		getCustomerId,
+		getProviderId,
 		showOptionsDropDown,
 	};
 };
