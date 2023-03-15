@@ -18,27 +18,27 @@ const Form = () => {
 		handleChangeValues,
 		handleChangeValuesAddress,
 		handleChangeChecked,
-		getCustomerId,
+		getProviderId,
 		showOptionsDropDown,
 	} = utils();
 
 	useEffect(() => {
 		(async () => {
-			if (id) await getCustomerId();
+			if (id) await getProviderId();
 		})();
 	}, []);
 
 	return (
 		<Elements.Container>
 			<Elements.Row>
-				<Elements.StyledLink to="/customer">
+				<Elements.StyledLink to="/provider">
 					<Elements.Icon>
 						<ArrowBack />
 					</Elements.Icon>
 					Voltar
 				</Elements.StyledLink>
 				<Elements.ContentTitle>
-					<h1>Cadastro de Cliente</h1>
+					<h1>Cadastro de Fornecedor</h1>
 					<span>* Campos obrigatórios</span>
 				</Elements.ContentTitle>
 
@@ -276,7 +276,7 @@ const Form = () => {
 					<Button
 						label="Cancelar"
 						width="140"
-						onClick={() => navigate("/customer")}
+						onClick={() => navigate("/provider")}
 					/>
 					<Button label="Cadastrar" width="140" onClick={handleSave} />
 				</Elements.ContentButton>
