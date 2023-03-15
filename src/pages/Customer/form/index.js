@@ -112,9 +112,6 @@ const Form = () => {
 							value={values.typeperson}
 							options={showOptionsDropDown()}
 							onChange={handleChangeValues}
-							// InputLabelProps={{
-							// 	shrink: true,
-							// }}
 						/>
 					</Elements.InputSize>
 
