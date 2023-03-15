@@ -49,7 +49,7 @@ const utils = () => {
 		});
 	};
 
-	const getMotivoCliente = async () => {
+	const getUserID = async () => {
 		try {
 			const response = await getUsersById(id);
 			const { idUser, ...rest } = Array.isArray(response)
@@ -103,7 +103,7 @@ const utils = () => {
 		handleChangeChecked,
 		handleTogglePassword,
 		handleMouseDownPassword,
-		getMotivoCliente,
+		getUserID,
 	};
 };
 

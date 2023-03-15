@@ -50,6 +50,9 @@ const Form = () => {
 								value={values.email}
 								error={errors.email}
 								onChange={handleChangeValue}
+								InputLabelProps={{
+									shrink: true,
+								}}
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
@@ -63,6 +66,9 @@ const Form = () => {
 								value={values.password}
 								error={errors.password}
 								onChange={handleChangeValue}
+								InputLabelProps={{
+									shrink: true,
+								}}
 								InputProps={{
 									endAdornment: (
 										<InputAdornment position="end">
