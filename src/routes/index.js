@@ -5,6 +5,7 @@ import AccountList from "../pages/Account/list";
 import CustomerForm from "../pages/Customer/form";
 import Home from "../pages/Home";
 import LoginForm from "../pages/Login/form";
+import PersonForm from "../pages/Person/form";
 import PersonList from "../pages/Person/list";
 import ProviderForm from "../pages/Provider/form";
 import ProviderList from "../pages/Provider/list";
@@ -88,6 +89,24 @@ const RoutesComponents = () => {
 					element={
 						<RequireAuth>
 							<PersonList />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="person-form"
+					element={
+						<RequireAuth>
+							<PersonForm />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="person/:id"
+					element={
+						<RequireAuth>
+							<PersonForm />
 						</RequireAuth>
 					}
 				/>
