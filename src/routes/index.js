@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 
 import Menu from "../components/Menu";
+import AccountForm from "../pages/Account/form";
 import AccountList from "../pages/Account/list";
 import CustomerForm from "../pages/Customer/form";
 import Home from "../pages/Home";
@@ -116,6 +117,24 @@ const RoutesComponents = () => {
 					element={
 						<RequireAuth>
 							<AccountList />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="account-form"
+					element={
+						<RequireAuth>
+							<AccountForm />
+						</RequireAuth>
+					}
+				/>
+
+				<Route
+					path="account/:id"
+					element={
+						<RequireAuth>
+							<AccountForm />
 						</RequireAuth>
 					}
 				/>
