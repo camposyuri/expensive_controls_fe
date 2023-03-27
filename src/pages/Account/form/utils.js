@@ -2,16 +2,15 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
 import {
+	getAccountById,
 	getAccountClassification,
 	getAccountType,
+	postAccount,
+	putAccount,
 } from "../../../services/account";
 import { getCustomer } from "../../../services/customer";
-import {
-	getPerson,
-	getPersonById,
-	postPerson,
-	putPerson,
-} from "../../../services/person";
+import { getPerson } from "../../../services/person";
+import { getProvider } from "../../../services/provider";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -22,9 +21,9 @@ const initialValues = {
 	expiration_date: null,
 	payment_date: null,
 	status: true,
-	id_provider: 0,
+	id_provider: null,
 	id_person: 0,
-	id_customer: 0,
+	id_customer: null,
 	id_account_classification: 0,
 	id_account_type: 0,
 };
@@ -58,18 +57,6 @@ const utils = () => {
 		setValues({
 			...values,
 			[name]: value,
-		});
-
-		valid(name, value);
-	};
-
-	const handleChangeValuesAddress = ({ target: { name, value } }) => {
-		setValues({
-			...values,
-			endereco: {
-				...values.endereco,
-				[name]: value,
-			},
 		});
 
 		valid(name, value);
@@ -110,16 +97,21 @@ const utils = () => {
 		return `${yyyy}-${mm}-${dd}`;
 	};
 
-	const getPersonId = async () => {
+	const getAccountId = async () => {
 		try {
-			const response = await getPersonById(id);
-			const { idPerson, birthdate, ...rest } = Array.isArray(response)
-				? response[0]
-				: response;
+			const response = await getAccountById(id);
+			const { idAccount, expiration_date, payment_date, ...rest } =
+				Array.isArray(response) ? response[0] : response;
 
-			const dateFormat = currentDate(new Date(birthdate));
-			const responsePerson = { id: idPerson, birthdate: dateFormat, ...rest };
-			setValues(responsePerson);
+			const dateFormatPayment = currentDate(new Date(payment_date));
+			const dateFormatExpiration = currentDate(new Date(expiration_date));
+			const responseAccount = {
+				id: idAccount,
+				expiration_date: dateFormatExpiration,
+				payment_date: dateFormatPayment,
+				...rest,
+			};
+			setValues(responseAccount);
 		} catch (error) {
 			console.error(error.message ? `Error: ${error.message}` : error);
 		}
@@ -155,28 +147,37 @@ const utils = () => {
 	const getAllCustomer = async () => {
 		try {
 			const response = await getCustomer();
-			setPerson(response.results);
+			setCustomer(response.results);
 		} catch (error) {
 			console.error(error.message ? `Error: ${error.message}` : error);
 		}
 	};
 
-	const submitPerson = async (values) => {
+	const getAllProvider = async () => {
+		try {
+			const response = await getProvider();
+			setProvider(response.results);
+		} catch (error) {
+			console.error(error.message ? `Error: ${error.message}` : error);
+		}
+	};
+
+	const submitAccount = async (values) => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
 			const response = id
-				? await putPerson(id, values)
-				: await postPerson(values);
+				? await putAccount(id, values)
+				: await postAccount(values);
 
-			const { idPerson, ...rest } = Array.isArray(response)
+			const { idAccount, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
 
-			const responseUser = { id: idPerson, ...rest };
-			setValues(responseUser);
+			const responseAccount = { id: idAccount, ...rest };
+			setValues(responseAccount);
 			setTimeout(() => {
-				navigate("/person");
+				navigate("/account");
 			}, 500);
 		} catch (error) {
 			const mappedErrors = getSchemaErrors(error);
@@ -184,14 +185,13 @@ const utils = () => {
 
 			setErrors({
 				...errors,
-				...errors?.endereco,
 				...mappedErrors,
 			});
 			console.error(error.message ? `Error: ${error.message}` : error);
 		}
 	};
 
-	const handleSave = () => submitPerson(values);
+	const handleSave = () => submitAccount(values);
 
 	return {
 		person,
@@ -204,15 +204,15 @@ const utils = () => {
 		navigate,
 		handleSave,
 		handleChangeValues,
-		handleChangeValuesAddress,
 		handleChangeChecked,
-		getPersonId,
+		getAccountId,
 		showOptionsDropDown,
 		showOptionsCorporateName,
 		getAllAccountType,
 		getAllAccountClassification,
 		getAllPerson,
 		getAllCustomer,
+		getAllProvider,
 		showOptionsDropDownName,
 	};
 };

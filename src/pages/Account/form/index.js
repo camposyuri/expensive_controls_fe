@@ -13,6 +13,7 @@ const Form = () => {
 	const {
 		person,
 		customer,
+		provider,
 		accountType,
 		accountClassification,
 		values,
@@ -23,22 +24,18 @@ const Form = () => {
 		showOptionsCorporateName,
 		showOptionsDropDownName,
 		handleChangeChecked,
-		getPersonId,
+		getAccountId,
 		showOptionsDropDown,
 		getAllAccountType,
 		getAllAccountClassification,
 		getAllPerson,
 		getAllCustomer,
+		getAllProvider,
 	} = utils();
-
-	const options = [
-		{ id: "F", description: "PF" },
-		{ id: "J", description: "PJ" },
-	];
 
 	useEffect(() => {
 		(async () => {
-			if (id) await getPersonId();
+			if (id) await getAccountId();
 		})();
 	}, []);
 
@@ -47,12 +44,13 @@ const Form = () => {
 		getAllAccountClassification();
 		getAllPerson();
 		getAllCustomer();
+		getAllProvider();
 	}, []);
 
 	return (
 		<Elements.Container>
 			<Elements.Row>
-				<Elements.StyledLink to="/customer">
+				<Elements.StyledLink to="/account">
 					<Elements.Icon>
 						<ArrowBack />
 					</Elements.Icon>
@@ -133,6 +131,7 @@ const Form = () => {
 							value={values.payment_date}
 							error={errors.payment_date}
 							fullWidth
+							required
 							InputLabelProps={{
 								shrink: true,
 							}}
@@ -161,7 +160,7 @@ const Form = () => {
 							variant="outlined"
 							size="small"
 							value={values.id_provider}
-							options={showOptionsCorporateName(options)}
+							options={showOptionsCorporateName(provider)}
 							onChange={handleChangeValues}
 						/>
 					</Elements.InputSize>
@@ -186,6 +185,7 @@ const Form = () => {
 							fullWidth
 							variant="outlined"
 							size="small"
+							required
 							value={values.id_account_classification}
 							options={showOptionsDropDown(accountClassification)}
 							onChange={handleChangeValues}
@@ -199,6 +199,7 @@ const Form = () => {
 							fullWidth
 							variant="outlined"
 							size="small"
+							required
 							value={values.id_account_type}
 							options={showOptionsDropDown(accountType)}
 							onChange={handleChangeValues}

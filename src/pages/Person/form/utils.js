@@ -107,7 +107,6 @@ const utils = () => {
 				: response;
 
 			const dateFormat = currentDate(new Date(birthdate));
-			console.log(dateFormat);
 
 			const responsePerson = { id: idPerson, birthdate: dateFormat, ...rest };
 			console.log(responsePerson);

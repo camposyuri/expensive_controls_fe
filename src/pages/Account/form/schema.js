@@ -2,25 +2,26 @@ import yup from "../../../utils/validation/yup";
 
 const schema = yup.object().shape({
 	name: yup.string().required().typeError("O campo é obrigatório"),
-	cpfcnpj: yup.string().required().typeError("O campo é obrigatório"),
-	phone: yup.string().required().typeError("O campo é obrigatório"),
-	birthdate: yup
+	value: yup.number().min(1).required().typeError("O campo é obrigatório"),
+	expiration_date: yup
 		.date()
 		.required()
 		.min("1900-01-01", "Data inválida.")
 		.max("4000-01-01", "Data inválida.")
 		.typeError("Campo obrigatório."),
-
-	endereco: yup.object().shape({
-		zipcode: yup.string().required().typeError("O campo é obrigatório"),
-		publicplace: yup.string().required().typeError("O campo é obrigatório"),
-		number: yup.string().required().typeError("O campo é obrigatório"),
-		county: yup.string().required().typeError("O campo é obrigatório"),
-		district: yup.string().required().typeError("O campo é obrigatório"),
-		uf: yup.string().required().typeError("O campo é obrigatório"),
-	}),
-
+	payment_date: yup
+		.date()
+		.required()
+		.min("1900-01-01", "Data inválida.")
+		.max("4000-01-01", "Data inválida.")
+		.typeError("Campo obrigatório."),
 	status: yup.boolean().default(false),
+	id_account_classification: yup.number().typeError("O campo é obrigatório"),
+	id_account_type: yup
+		.number()
+		.integer()
+		.min(1)
+		.typeError("O campo é obrigatório"),
 });
 
 export default schema;

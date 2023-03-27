@@ -22,6 +22,7 @@ const utils = () => {
 		setLoading(true);
 		try {
 			const { results } = await getAccount();
+			console.log(results);
 			const rows = results
 				.map(({ status, admin, ...rest }) => ({
 					status: status ? "ATIVO" : "INATIVO",

@@ -21,6 +21,7 @@ const schema = yup.object().shape({
 	}),
 
 	status: yup.boolean().default(false),
+	id_user: yup.number().typeError("O campo é obrigatório"),
 });
 
 export default schema;
