@@ -10,11 +10,15 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import { useAuth } from "../../../hooks/useAuth";
 import * as Elements from "./styles";
 import utils from "./utils";
 
 const Form = () => {
 	const { id } = useParams();
+
+	const { user } = useAuth();
+
 	const {
 		values,
 		errors,
@@ -144,6 +148,7 @@ const Form = () => {
 								checked={!values.admin ? false : true}
 								onChange={({ target: { name } }) => handleChangeChecked(name)}
 								name="admin"
+								disabled={!user.admin ? true : false}
 								color="primary"
 							/>
 						}

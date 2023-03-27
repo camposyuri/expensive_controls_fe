@@ -1,6 +1,6 @@
 import { Hidden, IconButton } from "@mui/material";
 import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { Container, Header, Logout, MenuUl, Title } from "./styles";
 
@@ -8,8 +8,10 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Menu = () => {
-	const { signout } = useAuth();
+	const { signout, user } = useAuth();
 	const [openMenu, setOpenMenu] = useState(false);
+
+	const navigate = useNavigate();
 
 	const handleToggleMenu = () => setOpenMenu(!openMenu);
 
@@ -41,6 +43,10 @@ const Menu = () => {
 								<li>
 									<Link to="/account">Conta</Link>
 								</li>
+								<Link to={`/user/${user.id}`}>
+									<Logout>{user.name}</Logout>
+								</Link>
+
 								<Link onClick={() => signout()}>
 									<Logout>Log Out</Logout>
 								</Link>
@@ -68,7 +74,9 @@ const Menu = () => {
 							</li>
 						</MenuUl>
 					</nav>
-
+					<Link to={`/user/${user.id}`}>
+						<Logout>{user.name}</Logout>
+					</Link>
 					<Link onClick={() => signout()}>
 						<Logout>Log Out</Logout>
 					</Link>
