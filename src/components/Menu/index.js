@@ -19,7 +19,7 @@ const Menu = () => {
 		<Container>
 			<Header>
 				<Title>
-					<Link to="/home">Controle de Gastos</Link>
+					<Link to="/user">Controle de Gastos</Link>
 				</Title>
 				<Hidden mdUp>
 					<IconButton onClick={() => handleToggleMenu()}>

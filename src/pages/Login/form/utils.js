@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../../../hooks/useAuth";
 import useValid from "../../../hooks/useValid";
+import { signup } from "../../../services/login";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -72,6 +73,23 @@ const utils = () => {
 		}
 	};
 
+	//Function Sign With Google
+	const submitSignWithGoogle = async ({ name, email, sub }) => {
+		const signupValues = {
+			name,
+			email,
+			sub,
+			password: sub,
+			status: true,
+			admin: true,
+		};
+
+		await signup(signupValues);
+
+		const userLogin = { email, password: signupValues.password };
+		await signIn(userLogin);
+	};
+
 	//Function error
 	const handleCloseMessage = () => setMessage({ ...message, show: false });
 
@@ -85,6 +103,7 @@ const utils = () => {
 		handleChangeValue,
 		submitSignin,
 		handleCloseMessage,
+		submitSignWithGoogle,
 	};
 };
 

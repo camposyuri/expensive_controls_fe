@@ -4,7 +4,6 @@ import Menu from "../components/Menu";
 import AccountForm from "../pages/Account/form";
 import AccountList from "../pages/Account/list";
 import CustomerForm from "../pages/Customer/form";
-import Home from "../pages/Home";
 import LoginForm from "../pages/Login/form";
 import PersonForm from "../pages/Person/form";
 import PersonList from "../pages/Person/list";
@@ -23,15 +22,6 @@ const RoutesComponents = () => {
 			<Route path="/" element={<LoginForm />} />
 			<Route path="/signup" element={<SignUpForm />} />
 			<Route element={<Menu />}>
-				<Route
-					path="home"
-					element={
-						<RequireAuth>
-							<Home />
-						</RequireAuth>
-					}
-				/>
-
 				<Route
 					path="user"
 					element={

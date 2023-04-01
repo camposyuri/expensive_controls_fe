@@ -42,7 +42,6 @@ const getAccountClassification = async () => {
 
 const postAccount = async (data) => {
 	try {
-		console.log(data);
 		const response = await api.post("/account", data);
 
 		if (response.status === 200) return response.data;

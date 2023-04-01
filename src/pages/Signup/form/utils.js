@@ -13,6 +13,7 @@ const initialValues = {
 	password: "",
 	status: true,
 	admin: false,
+	sub: null,
 };
 
 const utils = () => {
@@ -25,6 +26,7 @@ const utils = () => {
 		password: initialValues.password,
 		status: initialValues.status,
 		admin: initialValues.admin,
+		sub: initialValues.sub,
 	});
 
 	const [errors, setErrors] = useState({});
@@ -84,6 +86,7 @@ const utils = () => {
 		handleTogglePassword,
 		handleMouseDownPassword,
 		submitSignUp,
+		navigate,
 	};
 };
 

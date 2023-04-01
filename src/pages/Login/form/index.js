@@ -5,6 +5,8 @@ import { Content, ContentRegister, ImageFluid, Title } from "./styles";
 import Input from "../../../components/Input";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
 import login from "../../../assets/images/image-login.svg";
 import Button from "../../../components/Button";
@@ -21,6 +23,7 @@ const Form = () => {
 		handleMouseDownPassword,
 		submitSignin,
 		handleCloseMessage,
+		submitSignWithGoogle,
 	} = utils();
 
 	return (
@@ -99,6 +102,15 @@ const Form = () => {
 							</Link>
 							<br /> ou continue com
 						</span>
+						<GoogleLogin
+							onSuccess={(credentialResponse) => {
+								const { name, email, sub } = jwtDecode(credentialResponse.credential);
+								submitSignWithGoogle({ name, email, sub });
+							}}
+							onError={() => {
+								console.log("Login Failed");
+							}}
+						></GoogleLogin>
 					</ContentRegister>
 				</Grid>
 			</Content>

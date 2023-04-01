@@ -1,6 +1,6 @@
 import { Grid, Hidden, IconButton, InputAdornment } from "@mui/material";
 
-import { Content, ContentRegister, ImageFluid, Title } from "./styles";
+import { Content, ImageFluid, Title } from "./styles";
 
 import Input from "../../../components/Input";
 
@@ -20,6 +20,7 @@ const Form = () => {
 		handleMouseDownPassword,
 		handleChangeValues,
 		submitSignUp,
+		navigate,
 	} = utils();
 
 	return (
@@ -48,6 +49,9 @@ const Form = () => {
 								error={errors.name}
 								fullWidth
 								onChange={handleChangeValues}
+								InputLabelProps={{
+									shrink: true,
+								}}
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
@@ -59,6 +63,9 @@ const Form = () => {
 								error={errors.email}
 								fullWidth
 								onChange={handleChangeValues}
+								InputLabelProps={{
+									shrink: true,
+								}}
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
@@ -85,18 +92,20 @@ const Form = () => {
 										</InputAdornment>
 									),
 								}}
+								InputLabelProps={{
+									shrink: true,
+								}}
 							/>
 						</Grid>
 					</Grid>
-					<Button
-						label="Cadastrar"
-						width="369"
-						fullWidth
-						onClick={() => submitSignUp(values)}
-					/>
-					<ContentRegister>
-						<span>ou continue com</span>
-					</ContentRegister>
+					<div>
+						<Button
+							label="Cadastrar"
+							width="369"
+							fullWidth
+							onClick={() => submitSignUp(values)}
+						/>
+					</div>
 				</Grid>
 			</Content>
 		</Grid>

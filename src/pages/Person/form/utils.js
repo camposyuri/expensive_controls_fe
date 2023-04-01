@@ -109,7 +109,6 @@ const utils = () => {
 			const dateFormat = currentDate(new Date(birthdate));
 
 			const responsePerson = { id: idPerson, birthdate: dateFormat, ...rest };
-			console.log(responsePerson);
 			setValues(responsePerson);
 		} catch (error) {
 			console.error(error.message ? `Error: ${error.message}` : error);

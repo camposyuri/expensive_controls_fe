@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./assets/styles/global";
@@ -8,16 +9,18 @@ import { Container } from "./styles";
 
 const App = () => {
 	return (
-		<BrowserRouter>
-			<ThemeProvider theme={defaultTheme}>
-				<AuthProvider>
-					<Container>
-						<GlobalStyles />
-						<RoutesComponents />
-					</Container>
-				</AuthProvider>
-			</ThemeProvider>
-		</BrowserRouter>
+		<GoogleOAuthProvider clientId="81066842807-a6iq3s229rgiagc2upnmv11j462r67m3.apps.googleusercontent.com">
+			<BrowserRouter>
+				<ThemeProvider theme={defaultTheme}>
+					<AuthProvider>
+						<Container>
+							<GlobalStyles />
+							<RoutesComponents />
+						</Container>
+					</AuthProvider>
+				</ThemeProvider>
+			</BrowserRouter>
+		</GoogleOAuthProvider>
 	);
 };
 

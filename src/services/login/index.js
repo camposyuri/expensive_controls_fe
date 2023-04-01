@@ -16,6 +16,7 @@ const signup = async (data) => {
 
 		if (response.status === 200) return response.data;
 	} catch (error) {
+		if (error.response.data) return 400;
 		throw new Error(error);
 	}
 };

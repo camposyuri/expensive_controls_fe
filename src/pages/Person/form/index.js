@@ -42,7 +42,7 @@ const Form = () => {
 	return (
 		<Elements.Container>
 			<Elements.Row>
-				<Elements.StyledLink to="/customer">
+				<Elements.StyledLink to="/person">
 					<Elements.Icon>
 						<ArrowBack />
 					</Elements.Icon>
