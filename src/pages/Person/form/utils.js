@@ -3,6 +3,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import useValid from "../../../hooks/useValid";
 import { getPersonById, postPerson, putPerson } from "../../../services/person";
 import { getUsers } from "../../../services/user";
+import {
+	formatCellphone,
+	formatCpfCnpj,
+	formatPhone,
+	formatTelephone,
+} from "../../../utils/format";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -85,6 +91,16 @@ const utils = () => {
 		});
 	};
 
+	const handleChangeCpfCnpj = ({ target: { name, value } }) => {
+		setValues({ ...values, [name]: formatCpfCnpj(value) });
+		valid(name, value);
+	};
+
+	const handleChangePhone = ({ target: { name, value } }) => {
+		setValues({ ...values, [name]: formatPhone(value) });
+		valid(name, value);
+	};
+
 	const showOptionsDropDown = (options) => {
 		return (options || []).map(({ id, descricao, name }) => ({
 			value: id,
@@ -102,13 +118,22 @@ const utils = () => {
 	const getPersonId = async () => {
 		try {
 			const response = await getPersonById(id);
-			const { idPerson, birthdate, ...rest } = Array.isArray(response)
-				? response[0]
-				: response;
+			const { idPerson, birthdate, cpfcnpj, phone, telephone, ...rest } =
+				Array.isArray(response) ? response[0] : response;
 
 			const dateFormat = currentDate(new Date(birthdate));
+			const formatCpf = formatCpfCnpj(cpfcnpj);
+			const formatPhone = formatCellphone(phone);
+			const formatTele = formatTelephone(telephone);
 
-			const responsePerson = { id: idPerson, birthdate: dateFormat, ...rest };
+			const responsePerson = {
+				id: idPerson,
+				birthdate: dateFormat,
+				cpfcnpj: formatCpf,
+				phone: formatPhone,
+				telephone: formatTele,
+				...rest,
+			};
 			setValues(responsePerson);
 		} catch (error) {
 			console.error(error.message ? `Error: ${error.message}` : error);
@@ -128,16 +153,23 @@ const utils = () => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
+			const newValues = {
+				...values,
+				cpfcnpj: values.cpfcnpj.replaceAll(/\D/g, ""),
+				telephone: values.telephone.replaceAll(/\D/g, ""),
+				phone: values.phone.replaceAll(/\D/g, ""),
+			};
+
 			const response = id
-				? await putPerson(id, values)
-				: await postPerson(values);
+				? await putPerson(id, newValues)
+				: await postPerson(newValues);
 
 			const { idPerson, ...rest } = Array.isArray(response)
 				? response[0]
 				: response;
 
-			const responseUser = { id: idPerson, ...rest };
-			setValues(responseUser);
+			const responsePerson = { id: idPerson, ...rest };
+			setValues(responsePerson);
 			setTimeout(() => {
 				navigate("/person");
 			}, 500);
@@ -168,6 +200,8 @@ const utils = () => {
 		getPersonId,
 		showOptionsDropDown,
 		getUser,
+		handleChangeCpfCnpj,
+		handleChangePhone,
 	};
 };
 

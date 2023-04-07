@@ -20,6 +20,8 @@ const Form = () => {
 		handleChangeChecked,
 		getProviderId,
 		showOptionsDropDown,
+		handleChangeCpfCnpj,
+		handleChangePhone,
 	} = utils();
 
 	useEffect(() => {
@@ -98,7 +100,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 18,
+								},
+							}}
+							onChange={handleChangeCpfCnpj}
 						/>
 					</Elements.InputSize>
 
@@ -126,7 +133,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 10,
+								},
+							}}
+							onChange={handleChangePhone}
 						/>
 					</Elements.InputSize>
 
@@ -142,7 +154,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 15,
+								},
+							}}
+							onChange={handleChangePhone}
 						/>
 					</Elements.InputSize>
 

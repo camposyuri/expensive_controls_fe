@@ -22,6 +22,8 @@ const Form = () => {
 		getPersonId,
 		showOptionsDropDown,
 		getUser,
+		handleChangeCpfCnpj,
+		handleChangePhone,
 	} = utils();
 
 	const options = [
@@ -111,7 +113,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 18,
+								},
+							}}
+							onChange={handleChangeCpfCnpj}
 						/>
 					</Elements.InputSize>
 
@@ -154,7 +161,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 10,
+								},
+							}}
+							onChange={handleChangePhone}
 						/>
 					</Elements.InputSize>
 
@@ -170,7 +182,12 @@ const Form = () => {
 							InputLabelProps={{
 								shrink: true,
 							}}
-							onChange={handleChangeValues}
+							InputProps={{
+								inputProps: {
+									maxLength: 15,
+								},
+							}}
+							onChange={handleChangePhone}
 						/>
 					</Elements.InputSize>
 

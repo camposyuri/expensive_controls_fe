@@ -6,6 +6,12 @@ import {
 	postCustomer,
 	putCustomer,
 } from "../../../services/customer";
+import {
+	formatCellphone,
+	formatCpfCnpj,
+	formatPhone,
+	formatTelephone,
+} from "../../../utils/format";
 import getSchemaErrors from "../../../utils/validation/getSchemaErrors";
 import schema from "./schema";
 
@@ -88,6 +94,16 @@ const utils = () => {
 		});
 	};
 
+	const handleChangeCpfCnpj = ({ target: { name, value } }) => {
+		setValues({ ...values, [name]: formatCpfCnpj(value) });
+		valid(name, value);
+	};
+
+	const handleChangePhone = ({ target: { name, value } }) => {
+		setValues({ ...values, [name]: formatPhone(value) });
+		valid(name, value);
+	};
+
 	const showOptionsDropDown = () => {
 		return (options || []).map(({ id, descricao }) => ({
 			value: id,
@@ -98,12 +114,24 @@ const utils = () => {
 	const getCustomerId = async () => {
 		try {
 			const response = await getCustomerById(id);
-			const { idUser, ...rest } = Array.isArray(response)
+			const { idCustomer, cpfcnpj, phone, telephone, ...rest } = Array.isArray(
+				response
+			)
 				? response[0]
 				: response;
 
-			const responseUser = { id: idUser, ...rest };
-			setValues(responseUser);
+			const formatCpf = formatCpfCnpj(cpfcnpj);
+			const formatPhone = formatCellphone(phone);
+			const formatTele = formatTelephone(telephone);
+
+			const responseCustomer = {
+				id: idCustomer,
+				cpfcnpj: formatCpf,
+				phone: formatPhone,
+				telephone: formatTele,
+				...rest,
+			};
+			setValues(responseCustomer);
 		} catch (error) {
 			console.error(error.message ? `Error: ${error.message}` : error);
 		}
@@ -113,9 +141,16 @@ const utils = () => {
 		try {
 			await schema.validate(values, { abortEarly: false });
 
+			const newValues = {
+				...values,
+				cpfcnpj: values.cpfcnpj.replaceAll(/\D/g, ""),
+				telephone: values.telephone.replaceAll(/\D/g, ""),
+				phone: values.phone.replaceAll(/\D/g, ""),
+			};
+
 			const response = id
-				? await putCustomer(id, values)
-				: await postCustomer(values);
+				? await putCustomer(id, newValues)
+				: await postCustomer(newValues);
 
 			const { idCustomer, ...rest } = Array.isArray(response)
 				? response[0]
@@ -151,6 +186,8 @@ const utils = () => {
 		handleChangeChecked,
 		getCustomerId,
 		showOptionsDropDown,
+		handleChangeCpfCnpj,
+		handleChangePhone,
 	};
 };
 

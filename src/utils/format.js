@@ -12,6 +12,18 @@ const formatCpfCnpj = (text) => {
 	}
 };
 
+const formatPhone = (value) => {
+	const regexTelefone = /(\d{2})(\d{4})(\d{4})/g;
+	const regexCelular = /(\d{2})(\d{1})(\d{4})(\d{4})/g;
+	const phone = new String(value).replace(/[^\d]/g, "");
+
+	if (phone.length === 15) {
+		return phone.replace(regexCelular, "($1) $2 $3-$4");
+	} else {
+		return phone.replace(regexTelefone, "($1) $2-$3");
+	}
+};
+
 const formatTelephone = (value) => {
 	const regexTelefone = /(\d{2})(\d{4})(\d{4})/g;
 	const telefone = String(value).replace(/[^\d]/g, "");
@@ -23,29 +35,6 @@ const formatCellphone = (value) => {
 	const celular = String(value).replace(/[^\d]/g, "");
 	return celular.replace(regexCelular, "($1) $2-$3");
 };
-
-// export default function functionsDate() {
-// 	/**
-// 	 * @param {string} value
-// 	 * @returns {boolean}
-// 	 */
-// 	const isValid = (value) => {
-// 		return moment(value).isValid();
-// 	};
-
-// 	/**
-// 	 * @param {timestamp} value
-// 	 * @returns {string|empty}
-// 	 */
-// 	const formatDateOrEmpty = (value, mask = "DD/MM/YYYY") => {
-// 		return isValid(value) ? moment(value).format(mask) : "";
-// 	};
-
-// 	return {
-// 		isValid,
-// 		formatDateOrEmpty,
-// 	};
-// }
 
 const isValid = (value) => {
 	return moment(value).isValid();
@@ -65,5 +54,6 @@ export {
 	formatTelephone,
 	formatCellphone,
 	formatDateOrEmpty,
+	formatPhone,
 	formatterMoney,
 };
