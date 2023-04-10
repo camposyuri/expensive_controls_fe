@@ -2,7 +2,7 @@
 	"name": "expensive_controls_fe",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://camposyuri.github.io/expensive_controls_fe",
+	"homepage": "https://camposyuri.github.io/expensive_controls_fe/",
 	"dependencies": {
 		"@emotion/react": "^11.10.5",
 		"@emotion/styled": "^11.10.5",
