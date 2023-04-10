@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = {
-	local: process.env.NODE_ENV !== "production",
+	local: process.env.NODE_ENV === "production",
 };
 
 const url = instance.local
