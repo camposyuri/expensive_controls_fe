@@ -1,10 +1,11 @@
 import {
 	FormHelperText,
 	InputLabel as MInputLabel,
-	MenuItem,
 	Select as MSelect,
+	MenuItem,
 } from "@mui/material";
 
+import { useAuth } from "../../hooks/useAuth";
 import * as Elements from "./styles";
 
 const Select = ({
@@ -25,6 +26,8 @@ const Select = ({
 	InputLabelProps,
 	...rest
 }) => {
+	const { user } = useAuth();
+
 	const propsFormControl = {
 		fullWidth,
 		variant,
@@ -50,8 +53,13 @@ const Select = ({
 
 	return (
 		<Elements.FormControlStyle {...propsFormControl}>
-			<MInputLabel id={propsSelect.labelId}>{label}</MInputLabel>
-			<MSelect {...propsSelect}>
+			<MInputLabel
+				id={propsSelect.labelId}
+				disabled={!user.admin ? true : false}
+			>
+				{label}
+			</MInputLabel>
+			<MSelect {...propsSelect} disabled={!user.admin ? true : false}>
 				{options.map((option) => (
 					<MenuItem key={option.value} value={option.value}>
 						{option.description}

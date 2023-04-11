@@ -2,14 +2,13 @@ import { Grid, Hidden, IconButton, InputAdornment } from "@mui/material";
 
 import { Content, ContentRegister, ImageFluid, Title } from "./styles";
 
-import Input from "../../../components/Input";
-
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import { Link } from "react-router-dom";
 import login from "../../../assets/images/image-login.svg";
-import Button from "../../../components/Button";
+import ButtonLogin from "../../../components/ButtonLogin";
+import InputLogin from "../../../components/InputLogin";
 import utils from "./utils";
 
 const Form = () => {
@@ -44,7 +43,7 @@ const Form = () => {
 					<h2>Sign in</h2>
 					<Grid item md={12} marginTop={5}>
 						<Grid item marginBottom={3}>
-							<Input
+							<InputLogin
 								id="email"
 								name="email"
 								label="Email"
@@ -59,7 +58,7 @@ const Form = () => {
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
-							<Input
+							<InputLogin
 								id="password"
 								type={showPassword ? "text" : "password"}
 								name="password"
@@ -89,7 +88,7 @@ const Form = () => {
 							/>
 						</Grid>
 					</Grid>
-					<Button
+					<ButtonLogin
 						label="Login"
 						width="369"
 						onClick={() => submitSignin(values)}
@@ -104,7 +103,9 @@ const Form = () => {
 						</span>
 						<GoogleLogin
 							onSuccess={(credentialResponse) => {
-								const { name, email, sub } = jwtDecode(credentialResponse.credential);
+								const { name, email, sub } = jwtDecode(
+									credentialResponse.credential
+								);
 								submitSignWithGoogle({ name, email, sub });
 							}}
 							onError={() => {

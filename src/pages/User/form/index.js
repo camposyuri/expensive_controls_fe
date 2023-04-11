@@ -132,6 +132,7 @@ const Form = () => {
 						control={
 							<Switch
 								value={values.status}
+								disabled={!user.admin ? true : false}
 								checked={values.status !== false ? true : false}
 								name="status"
 								color="primary"

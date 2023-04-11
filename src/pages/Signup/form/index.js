@@ -2,13 +2,12 @@ import { Grid, Hidden, IconButton, InputAdornment } from "@mui/material";
 
 import { Content, ImageFluid, Title } from "./styles";
 
-import Input from "../../../components/Input";
-
 import login from "../../../assets/images/image-login.svg";
-import Button from "../../../components/Button";
 
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
+import ButtonLogin from "../../../components/ButtonLogin";
+import InputLogin from "../../../components/InputLogin";
 import utils from "./utils";
 
 const Form = () => {
@@ -41,7 +40,7 @@ const Form = () => {
 					<h2>Sign Up</h2>
 					<Grid item md={12} marginTop={5}>
 						<Grid item marginBottom={3}>
-							<Input
+							<InputLogin
 								id="name"
 								name="name"
 								label="Nome"
@@ -55,7 +54,7 @@ const Form = () => {
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
-							<Input
+							<InputLogin
 								id="email"
 								name="email"
 								label="Email"
@@ -69,7 +68,7 @@ const Form = () => {
 							/>
 						</Grid>
 						<Grid item marginBottom={3}>
-							<Input
+							<InputLogin
 								id="senha"
 								name="password"
 								label="Senha"
@@ -99,7 +98,7 @@ const Form = () => {
 						</Grid>
 					</Grid>
 					<div>
-						<Button
+						<ButtonLogin
 							label="Cadastrar"
 							width="369"
 							fullWidth

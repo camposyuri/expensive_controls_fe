@@ -1,7 +1,6 @@
-import { useAuth } from "../../hooks/useAuth";
 import { InputStyle } from "./styles";
 
-const Input = ({
+const InputLogin = ({
 	id,
 	label,
 	type,
@@ -10,12 +9,9 @@ const Input = ({
 	onChange,
 	...props
 }) => {
-	const { user } = useAuth();
-
 	return (
 		<InputStyle
 			id={id}
-			disabled={!user.admin ? true : false}
 			type={type}
 			label={label}
 			value={value}
@@ -28,4 +24,4 @@ const Input = ({
 	);
 };
 
-export default Input;
+export default InputLogin;

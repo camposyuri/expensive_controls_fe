@@ -5,11 +5,13 @@ import { useParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
+import { useAuth } from "../../../hooks/useAuth";
 import * as Elements from "./styles";
 import utils from "./utils";
 
 const Form = () => {
 	const { id } = useParams();
+	const { user } = useAuth();
 	const {
 		person,
 		customer,
@@ -211,6 +213,7 @@ const Form = () => {
 							control={
 								<Switch
 									value={values.status}
+									disabled={!user.admin ? true : false}
 									checked={values.status !== false ? true : false}
 									name="status"
 									color="primary"
