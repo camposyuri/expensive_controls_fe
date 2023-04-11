@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import GlobalStyles from "./assets/styles/global";
 import defaultTheme from "./assets/styles/theme/default";
@@ -10,7 +10,7 @@ import { Container } from "./styles";
 const App = () => {
 	return (
 		<GoogleOAuthProvider clientId="81066842807-a6iq3s229rgiagc2upnmv11j462r67m3.apps.googleusercontent.com">
-			<BrowserRouter>
+			<HashRouter>
 				<ThemeProvider theme={defaultTheme}>
 					<AuthProvider>
 						<Container>
@@ -19,7 +19,7 @@ const App = () => {
 						</Container>
 					</AuthProvider>
 				</ThemeProvider>
-			</BrowserRouter>
+			</HashRouter>
 		</GoogleOAuthProvider>
 	);
 };
