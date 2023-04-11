@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/expensive_controls_fe/static/js/main.d8564765.js",
+    "main.js": "/expensive_controls_fe/static/js/main.dd9c5328.js",
     "static/media/image-login.svg": "/expensive_controls_fe/static/media/image-login.bdf18add495b96df628e3b66821c2a3c.svg",
     "index.html": "/expensive_controls_fe/index.html",
-    "main.d8564765.js.map": "/expensive_controls_fe/static/js/main.d8564765.js.map"
+    "main.dd9c5328.js.map": "/expensive_controls_fe/static/js/main.dd9c5328.js.map"
   },
   "entrypoints": [
-    "static/js/main.d8564765.js"
+    "static/js/main.dd9c5328.js"
   ]
 }
