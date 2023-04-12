@@ -1,14 +1,6 @@
 import axios from "axios";
 
-// const instance = {
-// 	local: process.env.NODE_ENV === "production",
-// };
-
 const url = "https://expensive-control-api.onrender.com";
-
-// const url = instance.local
-// 	? process.env.REACT_APP_API_URL_LOCAL
-// 	: process.env.REACT_APP_API_URL_PROD;
 
 axios.defaults.headers.get["Content-Type"] = "application/json;charset=utf-8";
 axios.defaults.headers.get["Access-Control-Allow-Origin"] = "*";

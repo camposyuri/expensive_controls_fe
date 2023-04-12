@@ -41,7 +41,9 @@ const isValid = (value) => {
 };
 
 const formatDateOrEmpty = (value, mask = "DD/MM/YYYY") => {
-	return isValid(value) ? moment(value).format(mask) : "";
+	let date = new Date(value);
+	date = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+	return isValid(value) ? moment(date).format(mask) : "";
 };
 
 const formatterMoney = new Intl.NumberFormat("pt-BR", {

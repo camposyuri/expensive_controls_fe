@@ -161,7 +161,7 @@ const Form = () => {
 							fullWidth
 							variant="outlined"
 							size="small"
-							value={values.id_provider}
+							value={!values.id_provider ? " " : values.id_provider}
 							options={showOptionsCorporateName(provider)}
 							onChange={handleChangeValues}
 						/>
@@ -174,7 +174,7 @@ const Form = () => {
 							fullWidth
 							variant="outlined"
 							size="small"
-							value={values.id_customer}
+							value={!values.id_customer ? " " : values.id_customer}
 							options={showOptionsCorporateName(customer)}
 							onChange={handleChangeValues}
 						/>
